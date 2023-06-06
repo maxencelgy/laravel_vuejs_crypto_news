@@ -21,10 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// HOME
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
-
+// LOGIN
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
     ->middleware('guest');
@@ -36,25 +37,40 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
 Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
+// Inscription
+Route::get('inscription', [UsersController::class, 'create'])
+    ->name('users.create');
+
+Route::post('inscription', [UsersController::class, 'store'])
+    ->name('users.store');
+
+
+// Profile
+Route::get('profile', [UsersController::class, 'profile'])
+    ->name('users.profile')
+    ->middleware('auth');
+
+
+
 // Dashboard
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
-    ->middleware('auth');
+    ->middleware(['moderator', 'admin']);
 
 // Users
 
 Route::get('users', [UsersController::class, 'index'])
     ->name('users')
-    ->middleware('auth');
+    ->middleware('admin');
 
-Route::get('users/create', [UsersController::class, 'create'])
-    ->name('users.create')
-    ->middleware('auth');
-
-Route::post('users', [UsersController::class, 'store'])
-    ->name('users.store')
-    ->middleware('auth');
+//Route::get('users/create', [UsersController::class, 'create'])
+//    ->name('users.create')
+//    ->middleware('auth');
+//
+//Route::post('users', [UsersController::class, 'store'])
+//    ->name('users.store')
+//    ->middleware('auth');
 
 Route::get('users/{user}/edit', [UsersController::class, 'edit'])
     ->name('users.edit')

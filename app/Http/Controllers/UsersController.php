@@ -44,20 +44,20 @@ class UsersController extends Controller
             'last_name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email', Rule::unique('users')],
             'password' => ['nullable'],
-            'owner' => ['required', 'boolean'],
             'photo' => ['nullable', 'image'],
         ]);
 
-        Auth::user()->account->users()->create([
+        User::create([
+            'account_id' => 1,
             'first_name' => Request::get('first_name'),
             'last_name' => Request::get('last_name'),
             'email' => Request::get('email'),
             'password' => Request::get('password'),
-            'owner' => Request::get('owner'),
+            'owner' => 0,
             'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
         ]);
 
-        return Redirect::route('users')->with('success', 'User created.');
+        return Redirect::route('login');
     }
 
     public function edit(User $user)
@@ -120,4 +120,21 @@ class UsersController extends Controller
 
         return Redirect::back()->with('success', 'User restored.');
     }
+
+    public function profile()
+    {
+        return Inertia::render('Users/Profile', [
+            'user' => [
+                'id' => Auth::user()->id,
+                'first_name' => Auth::user()->first_name,
+                'last_name' => Auth::user()->last_name,
+                'email' => Auth::user()->email,
+                'owner' => Auth::user()->owner,
+                'photo' => Auth::user()->photo_path ? URL::route('image', ['path' => Auth::user()->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+                'deleted_at' => Auth::user()->deleted_at,
+            ],
+        ]);
+    }
+
+
 }

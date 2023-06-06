@@ -1,6 +1,6 @@
 <template>
   <Header>
-    VLELVAL
+    <div class="bg-darkblue-500 min-h-screen"></div>
   </Header>
 </template>
 

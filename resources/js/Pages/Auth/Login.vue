@@ -1,40 +1,50 @@
 <template>
-  <Head title="Login" />
-  <div class="flex items-center justify-center p-6 min-h-screen bg-indigo-800">
-    <div class="w-full max-w-md">
-      <logo class="block mx-auto w-full max-w-xs fill-white" height="50" />
-      <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
-        <div class="px-10 py-12">
-          <h1 class="text-center text-3xl font-bold">Welcome Back!</h1>
-          <div class="mt-6 mx-auto w-24 border-b-2" />
-          <text-input v-model="form.email" :error="form.errors.email" class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
-          <text-input v-model="form.password" :error="form.errors.password" class="mt-6" label="Password" type="password" />
-          <label class="flex items-center mt-6 select-none" for="remember">
-            <input id="remember" v-model="form.remember" class="mr-1" type="checkbox" />
-            <span class="text-sm">Remember Me</span>
-          </label>
-        </div>
-        <div class="flex px-10 py-4 bg-gray-100 border-t border-gray-100">
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Login</loading-button>
-        </div>
-      </form>
+  <Header>
+    <Head title="Login"/>
+    <div class="flex items-center justify-center p-6  bg-indigo-800">
+      <div class="w-full max-w-2xl">
+
+        <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
+          <div class="px-10 py-12">
+            <h1 class="text-center text-3xl font-bold">Content De Vous Revoir ! </h1>
+            <div class="mt-6 mx-auto w-24 border-b-2" />
+            <text-input v-model="form.email" :error="form.errors.email" class="mt-10 text-base" label="Email " type="email" autofocus autocapitalize="off" />
+            <text-input v-model="form.password" :error="form.errors.password" class="mt-6 text-base" label="Mot de passe " type="password" />
+            <label class="flex items-center mt-6 select-none" for="remember">
+              <input id="remember" v-model="form.remember" class="mr-1" type="checkbox" />
+              <span class="text-base">Se rappeler de moi</span>
+            </label>
+          </div>
+          <div class="px-10 py-4 bg-gray-100 border-t border-gray-100">
+            <loading-button :loading="form.processing" class="btn-indigo text-center w-full" type="submit">Login</loading-button>
+            <br>
+            <br>
+            <p class="text-lg text-center">Nouveau sur Daily Crypto ? <br> <Link class="text-purple-500 font-medium text-lg text-blue-600 underline dark:text-blue-500 hover:no-underline" :href="`inscription`"> S'inscrire ici </Link> </p>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
+
+  </Header>
 </template>
 
 <script>
-import { Head } from '@inertiajs/inertia-vue3'
+import {Head, Link} from '@inertiajs/inertia-vue3'
 import Logo from '@/Shared/Logo'
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
-
+import Header from '@/Shared/Header'
+import SelectInput from "@/Shared/SelectInput.vue";
+import FileInput from "@/Shared/FileInput.vue";
 export default {
   components: {
+    FileInput, SelectInput, Link,
     Head,
     LoadingButton,
     Logo,
     TextInput,
   },
+  layout: Header,
   data() {
     return {
       form: this.$inertia.form({

@@ -20,6 +20,13 @@ module.exports = {
       yellow: colors.yellow,
       green: colors.green,
       gray: colors.blueGray,
+      darkblue: {
+        500 : '#0C1B33',
+        600 : '#18273F',
+      },
+      purple: {
+        500: '#8B60ED',
+      },
       indigo: {
         100: '#e6e8ff',
         300: '#b2b7ff',
@@ -29,13 +36,14 @@ module.exports = {
         800: '#2f365f',
         900: '#191e38',
       },
+
     },
     extend: {
       borderColor: theme => ({
         DEFAULT: theme('colors.gray.200', 'currentColor'),
       }),
       fontFamily: {
-        sans: ['Cerebri Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
       },
       boxShadow: theme => ({
         outline: '0 0 0 2px ' + theme('colors.indigo.500'),
