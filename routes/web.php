@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuidesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
@@ -46,11 +47,26 @@ Route::post('inscription', [UsersController::class, 'store'])
 
 
 // Profile
-Route::get('profile', [UsersController::class, 'profile'])
-    ->name('users.profile')
+Route::get('profil', [UsersController::class, 'profile'])
+    ->name('users.profil')
+    ->middleware('auth');
+
+Route::get('profil/{user}/edit', [UsersController::class, 'edit'])
+    ->name('users.edit')
+    ->middleware('auth');
+
+Route::put('users/{user}', [UsersController::class, 'update'])
+    ->name('users.update')
+    ->middleware('auth');
+
+Route::delete('users/{user}', [UsersController::class, 'destroy'])
+    ->name('users.destroy')
     ->middleware('auth');
 
 
+Route::put('users/{user}/restore', [UsersController::class, 'restore'])
+    ->name('users.restore')
+    ->middleware('auth');
 
 // Dashboard
 
@@ -72,21 +88,24 @@ Route::get('users', [UsersController::class, 'index'])
 //    ->name('users.store')
 //    ->middleware('auth');
 
-Route::get('users/{user}/edit', [UsersController::class, 'edit'])
-    ->name('users.edit')
-    ->middleware('auth');
+//Route::get('users/{user}/edit', [UsersController::class, 'edit'])
+//    ->name('users.edit')
+//    ->middleware('auth');
 
-Route::put('users/{user}', [UsersController::class, 'update'])
-    ->name('users.update')
-    ->middleware('auth');
 
-Route::delete('users/{user}', [UsersController::class, 'destroy'])
-    ->name('users.destroy')
-    ->middleware('auth');
+Route::get('guides', [GuidesController::class, 'index'])
+    ->name('guides');
 
-Route::put('users/{user}/restore', [UsersController::class, 'restore'])
-    ->name('users.restore')
-    ->middleware('auth');
+Route::get('guides/create', [GuidesController::class, 'create'])
+    ->name('guides.create')
+    ->middleware(['admin', 'moderator']);
+
+Route::post('guides', [GuidesController::class, 'store'])
+    ->name('guides.store')
+    ->middleware(['admin', 'moderator']);
+
+
+
 
 // Organizations
 

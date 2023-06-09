@@ -8,6 +8,7 @@
         "php": "^8.0.2",
         "ext-exif": "*",
         "ext-gd": "*",
+        "ckeditor/ckeditor": "^4.21",
         "fakerphp/faker": "^1.9.1",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

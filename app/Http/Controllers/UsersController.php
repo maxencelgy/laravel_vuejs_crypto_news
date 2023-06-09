@@ -132,6 +132,7 @@ class UsersController extends Controller
                 'owner' => Auth::user()->owner,
                 'photo' => Auth::user()->photo_path ? URL::route('image', ['path' => Auth::user()->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
                 'deleted_at' => Auth::user()->deleted_at,
+                'created_at' => Auth::user()->created_at,
             ],
         ]);
     }

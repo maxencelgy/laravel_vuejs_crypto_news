@@ -30,11 +30,13 @@
 <script>
 import { Link } from '@inertiajs/inertia-vue3'
 import Icon from '@/Shared/Icon'
+import Dropdown from '@/Shared/Dropdown'
 
 export default {
   components: {
     Icon,
     Link,
+    Dropdown,
   },
   methods: {
     isUrl(...urls) {

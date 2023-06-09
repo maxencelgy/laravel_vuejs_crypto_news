@@ -1,6 +1,6 @@
 <template>
   <Header>
-    <Head title="Login"/>
+    <Head title="Connexion"/>
     <div class="flex items-center justify-center p-6  bg-indigo-800">
       <div class="w-full max-w-2xl">
 
@@ -16,7 +16,7 @@
             </label>
           </div>
           <div class="px-10 py-4 bg-gray-100 border-t border-gray-100">
-            <loading-button :loading="form.processing" class="btn-indigo text-center w-full" type="submit">Login</loading-button>
+            <loading-button :loading="form.processing" class="btn-indigo text-center w-full" type="submit">Connexion</loading-button>
             <br>
             <br>
             <p class="text-lg text-center">Nouveau sur Daily Crypto ? <br> <Link class="text-purple-500 font-medium text-lg text-blue-600 underline dark:text-blue-500 hover:no-underline" :href="`inscription`"> S'inscrire ici </Link> </p>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,6 +38,12 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
+            'categories' => function () use ($request) {
+            return Category::orderBy('title')
+                ->get()
+                ->map
+                ->only('id', 'title');
+            },
             'auth' => function () use ($request) {
                 return [
                     'user' => $request->user() ? [
@@ -45,6 +52,7 @@ class HandleInertiaRequests extends Middleware
                         'last_name' => $request->user()->last_name,
                         'email' => $request->user()->email,
                         'owner' => $request->user()->owner,
+                        'role' => $request->user()->role,
                         'account' => [
                             'id' => $request->user()->account->id,
                             'name' => $request->user()->account->name,
