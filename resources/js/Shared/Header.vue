@@ -9,7 +9,7 @@
             </Link>
             <div class="gap-4">
               <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Accueil</Link>
-              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Guides</Link>
+              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/guides`">Guides</Link>
               <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Tutoriel</Link>
               <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Actualités</Link>
               <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">A propos de nous

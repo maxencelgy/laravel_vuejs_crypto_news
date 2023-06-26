@@ -4,6 +4,8 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 
 
 
+
+
 InertiaProgress.init()
 
 createInertiaApp({

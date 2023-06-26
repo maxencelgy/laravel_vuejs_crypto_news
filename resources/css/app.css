@@ -7,6 +7,10 @@
 @import 'buttons';
 @import 'form';
 
+
+@import 'ckeditor/skins/moono/editor.css';
+
+
 /* Utilities */
 @import 'tailwindcss/utilities';
 @font-face {
@@ -20,7 +24,7 @@ body {
 }
 
 .wrap {
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
     width: 100%;
 }

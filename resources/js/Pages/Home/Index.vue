@@ -33,8 +33,15 @@
     <div class="bg-purple-400 w-full">
       <Banner/>
     </div>
-
-    <List/>
+    <div class="bg-purple-700">
+      <h2
+        class="pt-12 wrap mb-8 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600 ">
+        Actu des crypto-monnaies</h2>
+      <List :categories="categories" :articles="articles" :users="users"/>
+      <div class="text-center ">
+        <Link style="width: 15%" class="mb-4 transition-all uppercase font-semibold  inline-flex w-full items-center justify-center px-5 py-3 text-base  text-center text-white bg-purple-500 rounded-lg hover:bg-yellowFirst-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900  " :href="`/guides`"> Voir tous les articles</Link>
+      </div>
+    </div>
 
 
   </Header>
@@ -50,6 +57,11 @@ import Banner from "@/Pages/Blog/Banner.vue";
 
 export default {
   components: {Banner, Link, List},
+  props: {
+    categories: Object,
+    articles: Object,
+    users: Object,
+  },
   layout: Header,
 }
 </script>

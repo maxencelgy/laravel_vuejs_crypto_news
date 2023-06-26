@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Guide;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,32 +15,49 @@ class GuidesController extends Controller
 {
 
     public function index(){
-        return Inertia::render('Guides/Index');
+        return Inertia::render('Guides/Index', [
+            'articles' => Guide::all(),
+            'categories' => Category::all(),
+            'users' => User::all(),
+        ]);
     }
+
 
 
     public function create()
     {
-        return Inertia::render('Guides/Create');
+        $user = Auth::user();
+
+        return Inertia::render('Guides/Create', [
+            'user' => $user,
+        ]);
+    }
+
+    public function show(Guide $guide){
+        return Inertia::render('Guides/Show', [
+            'article' => $guide,
+            'categories' => Category::all(),
+            'users' => User::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'title' => ['required', 'max:100'],
-            'content' => ['required', 'max:850'],
+            'content' => ['required'],
             'categoryId' => ['required', 'max:150'],
             'photo' => ['nullable', 'image'],
         ]);
 
-        Guide::create([
+        $guide = Guide::create([
             'title' => $request->get('title'),
             'content' => $request->get('content'),
             'image' => $request->file('image') ? $request->file('image')->store('guides') : null,
             'categoryId' => $request->get('categoryId'),
         ]);
 
-        return redirect()->route('guides')->with('success', 'Guide créé.');
+        return redirect()->route('guides.show', $guide)->with('success', 'Guide créé.');
     }
 
 

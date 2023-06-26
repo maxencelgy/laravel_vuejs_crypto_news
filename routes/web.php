@@ -96,6 +96,8 @@ Route::get('users', [UsersController::class, 'index'])
 Route::get('guides', [GuidesController::class, 'index'])
     ->name('guides');
 
+
+
 Route::get('guides/create', [GuidesController::class, 'create'])
     ->name('guides.create')
     ->middleware(['admin', 'moderator']);
@@ -103,6 +105,10 @@ Route::get('guides/create', [GuidesController::class, 'create'])
 Route::post('guides', [GuidesController::class, 'store'])
     ->name('guides.store')
     ->middleware(['admin', 'moderator']);
+
+Route::get('guides/{guide}', [GuidesController::class, 'show'])
+    ->name('guides.show');
+
 
 
 

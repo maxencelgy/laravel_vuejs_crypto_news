@@ -1,94 +1,59 @@
 <template>
   <Header>
-    <div class="p-8 bg-darkblue-500">
+    <div class="p-8 bg-purple-400">
       <Head title="Poster un article"/>
       <div class=" wrap flex justify-between items-start py-8">
-        <div style="width: 48%" class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
+        <div style="width: 48%" class="rounded border !text-gray-400 rounded-lg shadow bg-purple-600 border-gray-700">
           <form @submit.prevent="store">
             <div class="px-10 py-12">
-              <h1 class="text-center text-3xl font-bold">Rédige un article</h1>
-              <div class="m-4 mt-6 mx-auto w-24 border-b-2"/>
+              <h1 class="text-center text-3xl !text-gray-200 font-extrabold">Rédige un article</h1>
+              <div class="m-4 mt-6 mx-auto border-yellowFirst-600 w-24 border-b-2"/>
               <div class="flex flex-wrap -mb-8 -mr-6 p-8">
                 <file-input v-model="form.image" @change="handleFileChange" :error="form.errors.image"
-                            class="pb-8 pr-6 w-full" type="file"
+                            class="pb-8 !text-gray-400 pr-6 w-full" type="file"
                             accept="image/*" label="Photo"/>
 
-                <text-input v-model="form.title" :error="form.errors.title" class="pb-8 pr-6 w-full"
+                <text-input v-model="form.title" :error="form.errors.title" class="pb-8 !text-gray-400 pr-6 w-full"
                             label="Titre"/>
-                <br>
+                <text-input v-model="form.user_id" :error="form.errors.title" class="hidden pb-8 pr-6 w-full"
+                            label="id"/>                <br>
 
-                <textarea-input v-model="form.content" :error="form.errors.content" class="pb-8 pr-6 w-full"
-                                label="Contenu"/>
+                <CkeditorInput @content-change="handleValueChange" ></CkeditorInput>
+                <text-input class="hidden" v-model="form.content" :model-value="this.content"> </text-input>
+
+<!--                <text-input v-model="form.content" :model-value="this" :error="form.errors.content" class="hidden pb-8 pr-6 w-full" />-->
+
+                <!--                <textarea-input v-model="form.content" :error="form.errors.content" class="pb-8 !text-gray-400 pr-6 w-full"-->
+<!--                                label="Contenu"/>-->
 
                 <select-input v-model="form.categoryId" :error="form.errors.categoryId"
-                              class="pb-8 pr-6 w-full"
+                              class="pb-8 !text-gray-400 pr-6 w-full"
                               label="Catégorie">
                   <option value=""> Sélectionnez une catégorie</option>
                   <option :value="`${item.id}`" v-for="item in categories">{{ item.title }}</option>
                 </select-input>
               </div>
-              <div class="px-8 py-4 bg-gray-50 border-t border-gray-100">
-                <br>
-                <loading-button :loading="form.processing" class="btn-indigo w-full" type="submit">Poster l'article
+
+              <div class="px-8 py-4 border-gray-100">
+                <loading-button :loading="form.processing" class="transition-all btn-indigo bg-purple-500 w-full" type="submit">Poster l'article
                 </loading-button>
               </div>
             </div>
           </form>
         </div>
         <div style="width: 48%;">
-          <div style="" class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div v-if="previewImage">
-              <img :src="previewImage" height="200px" alt="Preview"/>
-            </div>
-            <div class="p-5">
-              <a href="#">
-                <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white uppercase">{{
-                    form.title
-                  }}</h5>
-              </a>
-              <span v-if="form.categoryId != ''"
-                    class="px-3 py-2 mb-4 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{
-                  categories.filter(item => {
-                    return item.id == form.categoryId
-                  })[0].title
-                }}</span>
-              <br>
-
-              <p class=" py-2  mb-3 font-normal text-gray-700 dark:text-gray-400 max-w-8 truncate ">{{
-                  form.content
-                }}</p>
-              <a href="#"
-                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Read more
-                <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                </svg>
-              </a>
-            </div>
-          </div>
-          <br>
-          <div class="rounded bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-
-            <img class="mb-4 rounded shadow-lg" height="50px" :src="previewImage"/>
-            <div class="flex items-center justify-center">
-              <h1 class="mb-4 text-center text-4xl mr-4 text-white uppercase font-bold">
-                {{ form.title }}</h1>
-              <span v-if="form.categoryId != ''"
-                    class="mb-6 bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{
-                  categories.filter(item => {
-                    return item.id == form.categoryId
-                  })[0].title
-                }}</span>
-            </div>
-
-            <br>
-            <p class="text-white p-4 text-lg no-truncate">
-              {{ form.content }}
-            </p>
-          </div>
+          <CardPricipale
+            width="width: 100%;"
+            :cardClass="custom-card"
+            :imageSrc="previewImage"
+            imageAlt=""
+            date="À l'instant"
+            :username="user.first_name + ' ' + user.last_name"
+            :title="form.title"
+            :description="`content`"
+            link="#"
+            buttonText="Lire la suite"
+          />
 
         </div>
       </div>
@@ -111,21 +76,22 @@
 }
 </style>
 <script>
-import {Head, Link} from '@inertiajs/inertia-vue3'
+import {Head} from '@inertiajs/inertia-vue3'
 import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Header from '@/Shared/Header'
-import TextareaInput from "@/Shared/TextareaInput.vue";
 import FileInput from "@/Shared/FileInput.vue";
-import {toRaw} from "vue";
+import CardPricipale from "@/Pages/Blog/CardPricipale.vue";
+import CkeditorInput from "@/Shared/CkeditorInput.vue";
+
 
 export default {
   components: {
+    CkeditorInput,
     FileInput,
-    TextareaInput,
+    CardPricipale,
     Head,
-    Link,
     LoadingButton,
     SelectInput,
     TextInput,
@@ -136,6 +102,7 @@ export default {
     return {
       form: this.$inertia.form({
         title: '',
+        user_id: this.user.id,
         content: '',
         image: null,
         categoryId: '',
@@ -145,8 +112,14 @@ export default {
   },
   props: {
     categories: Object,
+    user: Object,
   },
   methods: {
+    handleValueChange(value) {
+      console.log(value)
+      this.form.content = value;
+    },
+
     handleFileChange(event) {
       const file = event.target.files[0];
       if (file) {
@@ -171,7 +144,8 @@ export default {
     },
   },
   mounted() {
-    console.table(toRaw(this.categories));
+
+    // console.table(toRaw(this.categories));
   }
 }
 </script>

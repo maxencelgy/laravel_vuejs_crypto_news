@@ -44,6 +44,7 @@ class HandleInertiaRequests extends Middleware
                 ->map
                 ->only('id', 'title');
             },
+            'url' =>  request()->getSchemeAndHttpHost(),
             'auth' => function () use ($request) {
                 return [
                     'user' => $request->user() ? [

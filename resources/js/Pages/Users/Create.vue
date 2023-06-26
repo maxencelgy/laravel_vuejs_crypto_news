@@ -1,7 +1,7 @@
 <template>
   <Header>
     <Head title="Inscription"/>
-    <div class="flex items-center justify-center p-6  bg-indigo-800">
+    <div class="flex items-center justify-center p-6  bg-purple-600">
       <div class="w-full max-w-2xl">
         <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="store">
           <div class="px-10 py-12">
