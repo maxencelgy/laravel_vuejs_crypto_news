@@ -54,7 +54,7 @@ class OrganizationsController extends Controller
 
     public function edit(Organization $organization)
     {
-        return Inertia::render('Organizations/Edit', [
+        return Inertia::render('Organizations/Edit.vue', [
             'organization' => [
                 'id' => $organization->id,
                 'name' => $organization->name,

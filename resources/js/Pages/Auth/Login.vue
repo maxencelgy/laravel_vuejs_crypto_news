@@ -7,7 +7,7 @@
         <form class="mt-8 bg-purple-400 text-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
           <div class="px-10 py-12">
             <h1 class="text-center text-3xl font-bold">Content De Vous Revoir ! </h1>
-            <div class="mt-6 mx-auto border-yellowFirst-600 w-24 border-b-2" />
+            <div class="m-4 mt-6 mx-auto w-24 border-b-2 border-purple-500" />
             <text-input v-model="form.email" :error="form.errors.email" class="mt-10 text-base" label="Email " type="email" autofocus autocapitalize="off" />
             <text-input v-model="form.password" :error="form.errors.password" class="mt-6 text-base" label="Mot de passe " type="password" />
             <label class="flex items-center mt-6 select-none" for="remember">
@@ -15,7 +15,7 @@
               <span class="text-base">Se rappeler de moi</span>
             </label>
           </div>
-          <div class="px-10 py-4 bg-purple-400 border-t border-yellowFirst-600">
+          <div class="px-10 py-4 bg-purple-400 border-t border-purple-500" >
             <loading-button :loading="form.processing" class="btn-indigo text-center w-full" type="submit">Connexion</loading-button>
             <br>
             <br>

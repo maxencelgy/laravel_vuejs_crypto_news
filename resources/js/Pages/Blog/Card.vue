@@ -1,8 +1,13 @@
 <template>
   <div style="width: 31.83%" class="hover:opacity-70 mb-12 transition-all">
-    <a :href="link">
+    <div class="relative " >
+      <svg v-if="liked == false" @click="handleSvgClick" width="28" height="30" viewBox="0 0 256 256" style="top: 15; right: 18;" class="absolute text-white"><path fill="red" d="M178 28c-20.09 0-37.92 7.93-50 21.56C115.92 35.93 98.09 28 78 28a66.08 66.08 0 0 0-66 66c0 72.34 105.81 130.14 110.31 132.57a12 12 0 0 0 11.38 0C138.19 224.14 244 166.34 244 94a66.08 66.08 0 0 0-66-66Zm-5.49 142.36a328.69 328.69 0 0 1-44.51 31.8a328.69 328.69 0 0 1-44.51-31.8C61.82 151.77 36 123.42 36 94a42 42 0 0 1 42-42c17.8 0 32.7 9.4 38.89 24.54a12 12 0 0 0 22.22 0C145.3 61.4 160.2 52 178 52a42 42 0 0 1 42 42c0 29.42-25.82 57.77-47.49 76.36Z"/></svg>
+      <svg v-else @click="handleSvgClick" class="absolute text-white z-40" xmlns="http://www.w3.org/2000/svg" width="30" height="32" style="top: 15; right: 18;" viewBox="0 0 24 24"><path fill="red" d="m12 21l-1.45-1.3q-2.525-2.275-4.175-3.925T3.75 12.812Q2.775 11.5 2.388 10.4T2 8.15Q2 5.8 3.575 4.225T7.5 2.65q1.3 0 2.475.55T12 4.75q.85-1 2.025-1.55t2.475-.55q2.35 0 3.925 1.575T22 8.15q0 1.15-.388 2.25t-1.362 2.412q-.975 1.313-2.625 2.963T13.45 19.7L12 21Z"/></svg>
+    </div>
+
+    <a :href="link" class=" cursor-pointer" >
       <img class="rounded-2xl mb-4 h-72 w-full" :src="'/img/' + imageSrc" :alt="imageAlt">
-      <h2 class="text-3xl mb-2 font-bold tracking-tight text-white">{{ title }}</h2>
+      <h2 class="text-3xl mb-2 font-bold tracking-tight text-white">{{ title }} </h2>
       <span
         class="mt-2 text-base font-medium mr-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-white">{{
           category}}</span>
@@ -34,6 +39,9 @@ dayjs.locale('fr'); // Définit la locale sur français
 export default {
   components: { Link },
   props: {
+    auth: {
+      type: Object,
+    },
     category: {
       type: String,
       default: '',
@@ -66,6 +74,29 @@ export default {
       type: String,
       default: '',
     },
+    liked: {
+      type: String,
+      default: '',
+    },
+    guide_id: {
+      type: String,
+      default: '',
+    },
+    user_id: {
+      type: String,
+      default: '',
+    },
+  },
+  mounted() {
+    // console.log(this.user_id)
+  },
+  data() {
+    return {
+      form: this.$inertia.form({
+        userId: this.user_id,
+        guideId: this.guide_id,
+      }),
+    }
   },
 
   methods: {
@@ -77,12 +108,19 @@ export default {
       if (diffInMinutes < 1) {
         return "à l'instant";
       } else if (diffInMinutes < 60) {
-        return `il y a ${diffInMinutes} minutes`;
-      } else {
+        return `il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
+      } else if (diffInMinutes < 1440) {
         const diffInHours = Math.floor(diffInMinutes / 60);
         return `il y a ${diffInHours} heure${diffInHours > 1 ? 's' : ''}`;
+      } else {
+        const diffInDays = Math.floor(diffInMinutes / 1440);
+        return `il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
       }
+    },
+    handleSvgClick(){
+      this.form.post('/like')
     }
+
 
   },
 };

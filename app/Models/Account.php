@@ -16,6 +16,12 @@ class Account extends Model
         return $this->hasMany(Organization::class);
     }
 
+    public function guides()
+    {
+        return $this->hasMany(Guide::class);
+    }
+
+
     public function contacts()
     {
         return $this->hasMany(Contact::class);

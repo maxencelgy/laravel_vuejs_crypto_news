@@ -14,8 +14,6 @@ import TextInput from "@/Shared/TextInput.vue";
 
 export default {
   components: {
-    TextInput,
-    TextareaInput,
     Editor,
   },
   data() {
@@ -43,8 +41,8 @@ export default {
   computed: {
     editorConfig() {
       return {
-        // Configuration de l'éditeur TinyMCE
-        // ...
+        plugins: 'link, lists, image, table, media',
+
       };
     },
   },

@@ -88,6 +88,14 @@ class User extends Authenticatable
             case 'owner': return $query->where('owner', true);
         }
     }
+    public function guides()
+    {
+        return $this->hasMany(Guide::class);
+    }
+    public function categories()
+    {
+        return $this->hasMany(Category::class, 'id');
+    }
 
     public function isAdmin()
     {
@@ -96,6 +104,17 @@ class User extends Authenticatable
     public function isModerator()
     {
         return $this->role === self::ROLE_MODERATOR;
+    }
+
+
+    public function getRole(){
+      if ($this->role === self::ROLE_ADMIN){
+          return 'admin';
+      }elseif ($this->role === self::ROLE_MODERATOR){
+          return 'moderateur';
+      }else{
+          return 'user';
+      }
     }
 
     public function scopeFilter($query, array $filters)

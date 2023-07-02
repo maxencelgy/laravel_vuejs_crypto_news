@@ -1,5 +1,5 @@
 <template>
-  <h2 class="pt-12 wrap mb-8 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600 ">Sélection de la semaine</h2>
+  <h2  class="pt-12 wrap mb-8 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600 ">Sélection de la semaine</h2>
   <div class=" wrap flex items-start justify-between py-10 pb-16">
     <CardPricipale
       width="width: 59%;"

@@ -1,14 +1,16 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CategoryAdminController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuidesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\OrganizationsController;
+use App\Http\Controllers\GuidesAdminController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,6 +48,9 @@ Route::post('inscription', [UsersController::class, 'store'])
     ->name('users.store');
 
 
+Route::post('like', [UsersController::class, 'createLike'])
+    ->name('like.store');
+
 // Profile
 Route::get('profil', [UsersController::class, 'profile'])
     ->name('users.profil')
@@ -70,9 +75,9 @@ Route::put('users/{user}/restore', [UsersController::class, 'restore'])
 
 // Dashboard
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard')
-    ->middleware(['moderator', 'admin']);
+Route::get('/admin', [DashboardController::class, 'index'])
+    ->name('admin')
+    ->middleware(['admin']);
 
 // Users
 
@@ -80,22 +85,21 @@ Route::get('users', [UsersController::class, 'index'])
     ->name('users')
     ->middleware('admin');
 
-//Route::get('users/create', [UsersController::class, 'create'])
-//    ->name('users.create')
-//    ->middleware('auth');
+Route::get('users/create', [UsersController::class, 'create'])
+    ->name('users.create')
+    ->middleware('auth');
 //
 //Route::post('users', [UsersController::class, 'store'])
 //    ->name('users.store')
 //    ->middleware('auth');
 
-//Route::get('users/{user}/edit', [UsersController::class, 'edit'])
-//    ->name('users.edit')
-//    ->middleware('auth');
+Route::get('users/{user}/edit', [UsersController::class, 'edit'])
+    ->name('users.edit')
+    ->middleware('auth');
 
 
 Route::get('guides', [GuidesController::class, 'index'])
     ->name('guides');
-
 
 
 Route::get('guides/create', [GuidesController::class, 'create'])
@@ -113,35 +117,47 @@ Route::get('guides/{guide}', [GuidesController::class, 'show'])
 
 
 
-// Organizations
+// Guides
+Route::prefix('admin')->group(function (){
+    Route::get('guides', [GuidesAdminController::class, 'index'])
+        ->name('guides')
+        ->middleware('auth');
 
-Route::get('organizations', [OrganizationsController::class, 'index'])
-    ->name('organizations')
-    ->middleware('auth');
+    Route::get('guides/create', [GuidesAdminController::class, 'create'])
+        ->name('guides.create')
+        ->middleware('auth');
 
-Route::get('organizations/create', [OrganizationsController::class, 'create'])
-    ->name('organizations.create')
-    ->middleware('auth');
+    Route::post('guides', [GuidesAdminController::class, 'store'])
+        ->name('guides.store')
+        ->middleware('auth');
 
-Route::post('organizations', [OrganizationsController::class, 'store'])
-    ->name('organizations.store')
-    ->middleware('auth');
+    Route::get('guides/{guide}/edit', [GuidesAdminController::class, 'edit'])
+        ->name('guides.edit')
+        ->middleware('auth');
 
-Route::get('organizations/{organization}/edit', [OrganizationsController::class, 'edit'])
-    ->name('organizations.edit')
-    ->middleware('auth');
+    Route::put('guides/{guide}', [GuidesAdminController::class, 'update'])
+        ->name('guides.update')
+        ->middleware('auth');
 
-Route::put('organizations/{organization}', [OrganizationsController::class, 'update'])
-    ->name('organizations.update')
-    ->middleware('auth');
+    Route::delete('guides/{organization}', [GuidesAdminController::class, 'destroy'])
+        ->name('guides.destroy')
+        ->middleware('auth');
 
-Route::delete('organizations/{organization}', [OrganizationsController::class, 'destroy'])
-    ->name('organizations.destroy')
-    ->middleware('auth');
+    Route::put('guides/{organization}/restore', [GuidesAdminController::class, 'restore'])
+        ->name('guides.restore')
+        ->middleware('auth');
 
-Route::put('organizations/{organization}/restore', [OrganizationsController::class, 'restore'])
-    ->name('organizations.restore')
-    ->middleware('auth');
+
+    Route::get('categories', [CategoryAdminController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [CategoryAdminController::class, 'create'])->name('categories.edit');
+    Route::post('categories', [CategoryAdminController::class, 'store'])->name('categories.store');
+    Route::delete('categories/{category}', [CategoryAdminController::class, 'destroy'])->name('categories.destroy')->middleware('auth');
+
+});
+
+
+
+
 
 // Contacts
 
@@ -175,9 +191,9 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
 
 // Reports
 
-Route::get('reports', [ReportsController::class, 'index'])
-    ->name('reports')
-    ->middleware('auth');
+//Route::get('reports', [ReportsController::class, 'index'])
+//    ->name('reports')
+//    ->middleware('auth');
 
 // Images
 

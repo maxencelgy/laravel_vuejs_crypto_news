@@ -16,6 +16,23 @@ class Guide extends Model
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
     }
 
+
+    public static function  getArticlesLiked(){
+
+        $likes = Like::where('userId', auth()->user()->id)->get();
+
+        foreach ($likes as $like) {
+            $articles[] = Guide::where('id', $like->guideId)->first();
+        }
+
+        return $articles;
+    }
+
+
+    public function getCategory(){
+        return Category::where('id', $this->categoryId)->first()->title;
+    }
+
 //    public function contacts()
 //    {
 //        return $this->hasMany(Contact::class);
@@ -24,7 +41,7 @@ class Guide extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('name', 'like', '%'.$search.'%');
+            $query->where('title', 'like', '%'.$search.'%');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
@@ -33,4 +50,14 @@ class Guide extends Model
             }
         });
     }
+
+    public function isLiked(){
+        if (Like::where('userId', auth()->user()->id)->where('guide_id', $this->id)){
+            return 'like';
+        }else {
+            return 'pas like';
+        }
+     }
+
+
 }

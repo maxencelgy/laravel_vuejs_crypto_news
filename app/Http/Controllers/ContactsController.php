@@ -68,7 +68,7 @@ class ContactsController extends Controller
 
     public function edit(Contact $contact)
     {
-        return Inertia::render('Contacts/Edit', [
+        return Inertia::render('Contacts/Edit.vue', [
             'contact' => [
                 'id' => $contact->id,
                 'first_name' => $contact->first_name,

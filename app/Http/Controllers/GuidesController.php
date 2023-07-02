@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Guide;
+use App\Models\Like;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -16,9 +18,13 @@ class GuidesController extends Controller
 
     public function index(){
         return Inertia::render('Guides/Index', [
+            'likes' => Like::all(),
+            'users' => User::all(),
             'articles' => Guide::all(),
             'categories' => Category::all(),
-            'users' => User::all(),
+            'user' => [
+                'id' => Auth::user()->id ?? 0,
+            ],
         ]);
     }
 
@@ -59,8 +65,5 @@ class GuidesController extends Controller
 
         return redirect()->route('guides.show', $guide)->with('success', 'Guide créé.');
     }
-
-
-
 
 }

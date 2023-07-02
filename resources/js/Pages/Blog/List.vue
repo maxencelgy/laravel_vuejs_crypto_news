@@ -11,8 +11,9 @@
 
   </div>
   <div class="bg-purple-600">
-    <div class="wrap flex pb-16 flex-wrap justify-between">
+    <div class="wrap flex pb-4 flex-wrap justify-between">
       <Card v-for="article in articles"
+        :guide_id="article.id"
         :imageSrc="article.image"
         imageAlt=""
         :category="getCategoryName(article.categoryId)"
@@ -21,6 +22,8 @@
         :title="article.title"
         :description="article.description"
         :link=" `guides/` + article.id"
+        :liked="getLike(article.id)"
+        :user_id="user.id"
         buttonText="Lire la suite"
       />
     </div>
@@ -34,7 +37,7 @@
 
 import {Link} from "@inertiajs/inertia-vue3";
 import Card from "./Card";
-import * as url from "url";
+
 export default {
   components: {Link, Card},
 
@@ -43,10 +46,11 @@ export default {
     categories: Object,
     articles: Object,
     users: Object,
+    user: Object,
+    likes: Object,
   },
   mounted() {
-    console.table(this.articles)
-
+    // console.table(this.user)
   },
   methods: {
     getUserName(userId) {
@@ -56,7 +60,16 @@ export default {
     getCategoryName(categoryId) {
       const category = this.categories.find(category => category.id === categoryId);
       return category.title;
-    }
+    },
+    getLike(guideId){
+      const like = this.likes.find(like => like.guideId === guideId && like.userId === this.user.id);
+
+      if (like){
+        return true;
+      }else {
+        return false;
+      }
+    },
   },
 }
 

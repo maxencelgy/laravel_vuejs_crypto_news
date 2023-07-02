@@ -1,8 +1,5 @@
 <template>
-
-
   <div class="flex flex-col  items-center justify-between " :style="width">
-
     <a href="#"
        class=" flex flex-col items-center rounded-lg shadow mb-4 md:flex-row md:max-w-xl border-gray-700 bg-purple-600 hover:bg-purple-300">
       <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"

@@ -1,6 +1,6 @@
 <template>
   <Header>
-    <div class="bg-darkblue-500 p-6">
+    <div class="bg-purple-600 p-6">
       <Head :title="`${form.first_name} ${form.last_name}`"/>
 
       <div class="flex  mb-8 ">
@@ -8,11 +8,11 @@
       </div>
       <div class="flex items-center justify-center">
 
-        <div class="max-w-3xl bg-white rounded-md shadow overflow-hidden">
+        <div class="max-w-3xl bg-purple-400  rounded-md shadow overflow-hidden">
           <form @submit.prevent="update">
             <div class="px-10 py-12">
-              <h1 class="text-center text-3xl font-bold">Modifier Votre Profil</h1>
-              <div class="m-4 mt-6 mx-auto w-24 border-b-2"/>
+              <h1 class="text-center text-3xl font-bold text-white">Modifier Votre Profil</h1>
+              <div class="m-4 mt-6 mx-auto w-24 border-b-2 border-purple-500"/>
               <div class="flex flex-wrap -mb-8 -mr-6 p-8">
                 <text-input v-model="form.first_name" :error="form.errors.first_name" class="pb-8 pr-6 w-full lg:w-1/2"
                             label="First name"/>
@@ -26,7 +26,7 @@
                             type="file"
                             accept="image/*" label="Photo"/>
               </div>
-              <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
+              <div class="flex items-center px-8 py-4 bg-purple-400 border-t border-purple-500 ">
 <!--                <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button"-->
 <!--                        @click="destroy">Delete User-->
 <!--                </button>-->

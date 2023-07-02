@@ -1,11 +1,9 @@
 /* Reset */
 @import 'tailwindcss/base';
-@import 'reset';
+
 
 /* Components */
 @import 'tailwindcss/components';
-@import 'buttons';
-@import 'form';
 
 
 @import 'ckeditor/skins/moono/editor.css';

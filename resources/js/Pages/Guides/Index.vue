@@ -1,6 +1,6 @@
 <template>
   <Header>
-    <List :categories="categories" :articles="articles" :users="users"></List>
+    <List :categories="categories" :articles="articles" :users="users" :user="user" :likes="likes"></List>
   </Header>
 </template>
 
@@ -14,6 +14,8 @@ export default {
   components: {List},
   layout: Header,
   props: {
+    user: Object,
+    likes: Object,
     categories: Object,
     articles: Object,
     users: Object,

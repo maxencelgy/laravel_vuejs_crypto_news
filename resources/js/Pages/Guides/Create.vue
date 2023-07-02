@@ -106,6 +106,7 @@ export default {
         content: '',
         image: null,
         categoryId: '',
+        online: 0,
       }),
       previewImage: null,
     };
@@ -116,7 +117,6 @@ export default {
   },
   methods: {
     handleValueChange(value) {
-      console.log(value)
       this.form.content = value;
     },
 

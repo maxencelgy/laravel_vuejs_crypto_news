@@ -1,7 +1,7 @@
 <template>
   <Header>
     <div class="bg-purple-600">
-      <div class="wrap flex justify-center">
+      <div class="wrap flex justify-center pb-16">
         <div class="w-full max-w-screen-lg">
           <div class="img" :style="{ backgroundImage:'url(/img/'+ article.image +')' }"></div>
           <div class="container mx-auto mt-8 ">
@@ -48,6 +48,7 @@ export default {
   height: 400px;
 }
 h2 {
+  margin-top: 2.5rem;
   font-size: 2rem;
   font-weight: 600;
   line-height: 2rem;
