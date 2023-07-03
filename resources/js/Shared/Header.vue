@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="z-80 sticky top-0">
+    <div class="z-80 sticky top-0" style="z-index: 900;">
       <nav class="z-80 bg-purple-600" :class="{ '!bg-purple-400 shadow': !showElement }">
         <div class="z-80 wrap max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
           <div class="flex items-center">
@@ -8,12 +8,8 @@
               <logo class="block mx-auto w-full fill-white" height="100"/>
             </Link>
             <div class="gap-4">
-              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Accueil</Link>
               <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/guides`">Guides</Link>
-              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Tutoriel</Link>
-              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">Actualités</Link>
-              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">A propos de nous
-              </Link>
+              <Link class="text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">La boutique</Link>
             </div>
           </div>
           <div v-if="$page.props.auth.user">
@@ -61,8 +57,7 @@
           </div>
 
           <!-- Contenu à afficher si l'utilisateur n'est pas connecté -->
-          <Link v-else
-                class="text-black focus:outline-none transition-all  text-black uppercase bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2"
+          <Link v-else class="text-black focus:outline-none transition-all  text-black uppercase bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2"
                 :href="`/login`">
             S'inscrire / Se connecter
           </Link>
@@ -113,9 +108,6 @@ import {Link} from '@inertiajs/inertia-vue3'
 import Icon from '@/Shared/Icon'
 import Logo from '@/Shared/Logo'
 import Dropdown from "@/Shared/Dropdown.vue";
-import MainMenu from "@/Shared/MainMenu.vue";
-import FlashMessages from "@/Shared/FlashMessages.vue";
-import {toRaw} from "vue";
 
 export default {
   data() {

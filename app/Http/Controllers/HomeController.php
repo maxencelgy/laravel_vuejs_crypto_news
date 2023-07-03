@@ -13,6 +13,7 @@ class HomeController extends Controller
     {
         return Inertia::render('Home/Index', [
             'articles' =>  Guide::latest('created_at')->take(3)->get(),
+            'articlesOne' =>  Guide::take(5)->get(),
             'categories' => Category::all(),
             'likes' => Like::all(),
             'user' => auth()->user(),

@@ -2,12 +2,22 @@
   <div class="bg-purple-600">
     <div class="wrap flex items-center py-4 bg-purple-600 md:py-8 flex-wrap">
       <!-- Boutons de filtrage -->
+
+
+      <!-- Barre de recherche -->
+      <input
+        type="text"
+        v-model="searchQuery"
+        @input="searchByQuery"
+        placeholder="Search..."
+        class="border border-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
+      />
       <button
         type="button"
         class="focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
         @click="filterByCategory(null)"
       >
-        All categories
+        Toutes les catégories
       </button>
       <button
         type="button"
@@ -18,20 +28,11 @@
       >
         {{ categorie.title }}
       </button>
-
-      <!-- Barre de recherche -->
-      <input
-        type="text"
-        v-model="searchQuery"
-        @input="searchByQuery"
-        placeholder="Search..."
-        class="border border-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
-      />
     </div>
 
     <!-- Contenu de la liste -->
-    <div class="wrap flex pb-4 flex-wrap justify-between">
-      <Card
+    <div class="wrap flex pb-4 flex-wrap justify-between" style="min-height: 500px">
+      <Card v-if="user"
         v-for="article in filteredArticles"
         :key="article.id"
         :guide_id="article.id"
@@ -46,6 +47,20 @@
         :liked="getLike(article.id)"
         :user_id="user.id"
         buttonText="Lire la suite"
+      />
+      <Card v-else
+            v-for="article in filteredArticles"
+            :key="article.id"
+            :guide_id="article.id"
+            :imageSrc="article.image"
+            imageAlt=""
+            :category="getCategoryName(article.categoryId)"
+            :date="article.created_at"
+            :username="getUserName(article.user_id)"
+            :title="article.title"
+            :description="article.description"
+            :link="`guides/` + article.id"
+            buttonText="Lire la suite"
       />
     </div>
   </div>

@@ -1,14 +1,15 @@
 <template>
   <div :style="width" class="image-container shadow-lg hove rounded-lg shadow bg-purple-600 hover:bg-purple-300">
     <a :href="link">
-      <img class=" mb-4 min-w-full rounded-t-lg" :src="imageSrc" :alt="imageAlt"/>
+      <div class="img" :style="{ backgroundImage:'url(/img/'+ imageSrc +')' }"></div>
+
     </a>
     <div class="flex justify-between px-4 items-center w-full">
       <div class="text-sm text-gray-400 flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
           <path fill="currentColor" d="M5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V2h2v2h8V2h2v2h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10ZM5 8h14V6H5v2Zm0 0V6v2Zm7 6q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm-4 0q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm8 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14Zm-4 4q-.425 0-.713-.288T11 17q0-.425.288-.713T12 16q.425 0 .713.288T13 17q0 .425-.288.713T12 18Zm-4 0q-.425 0-.713-.288T7 17q0-.425.288-.713T8 16q.425 0 .713.288T9 17q0 .425-.288.713T8 18Zm8 0q-.425 0-.713-.288T15 17q0-.425.288-.713T16 16q.425 0 .713.288T17 17q0 .425-.288.713T16 18Z"/>
         </svg>
-        <p class="ml-2">{{ date }}</p>
+        <p class="ml-2">{{ formatRelativeDate(date)  }}</p>
       </div>
       <div class="flex text-gray-400 px-4 items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -37,8 +38,29 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+
 export default {
   name: 'CardPrincipale',
+  methods: {
+    formatRelativeDate(date) {
+      const currentDate = dayjs();
+      const articleDate = dayjs(date);
+      const diffInMinutes = currentDate.diff(articleDate, 'minute');
+
+      if (diffInMinutes < 1) {
+        return "à l'instant";
+      } else if (diffInMinutes < 60) {
+        return `il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
+      } else if (diffInMinutes < 1440) {
+        const diffInHours = Math.floor(diffInMinutes / 60);
+        return `il y a ${diffInHours} heure${diffInHours > 1 ? 's' : ''}`;
+      } else {
+        const diffInDays = Math.floor(diffInMinutes / 1440);
+        return `il y a ${diffInDays} jour${diffInDays > 1 ? 's' : ''}`;
+      }
+    },
+  },
   props: {
     cardClass: {
       type: String,
@@ -92,5 +114,13 @@ export default {
   max-width: 100%;
 
 }
-
+.img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  margin-bottom: 1rem;
+}
 </style>

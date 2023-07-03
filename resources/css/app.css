@@ -6,8 +6,6 @@
 @import 'tailwindcss/components';
 
 
-@import 'ckeditor/skins/moono/editor.css';
-
 
 /* Utilities */
 @import 'tailwindcss/utilities';

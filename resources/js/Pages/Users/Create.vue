@@ -16,6 +16,9 @@
                         label="Email * "/>
             <text-input v-model="form.password" :error="form.errors.password" class="pb-8 pr-6 w-full"
                         type="password" autocomplete="new-password" label="Mot de passe * "/>
+
+            <select-input v-if="admin" v-model:"fo"></select-input>
+
             <file-input v-model="form.photo" :error="form.errors.photo" class="pb-8 pr-6 w-full" type="file"
                         accept="image/*" label="Photo"/>
           </div>
@@ -40,18 +43,22 @@ import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Header from '@/Shared/Header'
+import SelectInput from "@/Shared/SelectInput.vue";
 
 export default {
   components: {
+    SelectInput,
     FileInput,
     Head,
     Link,
     LoadingButton,
-    SelectInput,
     TextInput,
   },
   layout: Header,
   remember: 'form',
+  props: {
+    admin: Object,
+  },
   data() {
     return {
       form: this.$inertia.form({

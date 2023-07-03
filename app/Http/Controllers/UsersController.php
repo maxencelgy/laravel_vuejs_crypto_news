@@ -39,7 +39,12 @@ class UsersController extends Controller
 
     public function create()
     {
-        return Inertia::render('Users/Create');
+
+        $admin = Auth::user()->isAdmin();
+
+        return Inertia::render('Users/Create', [
+            'user' => $admin,
+        ]);
     }
 
     public function createLike()
@@ -95,13 +100,16 @@ class UsersController extends Controller
         return Redirect::route('login');
     }
 
-    public function edit(User $user)
+    public function edit()
     {
+
+        $user = Auth::user();
         return Inertia::render('Users/Edit.vue', [
             'user' => [
                 'id' => $user->id,
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
+                'role' => $user->role, // 'Admin', 'Editor', 'Viewer
                 'email' => $user->email,
                 'owner' => $user->owner,
                 'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
@@ -152,14 +160,11 @@ class UsersController extends Controller
     public function restore(User $user)
     {
         $user->restore();
-
         return Redirect::back()->with('success', 'User restored.');
     }
 
     public function profile()
     {
-
-
         return Inertia::render('Users/Profile', [
             'articles' => Guide::getArticlesLiked(),
             'categories' => Category::all(),

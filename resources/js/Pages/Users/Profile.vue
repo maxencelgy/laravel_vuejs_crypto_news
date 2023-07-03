@@ -9,7 +9,7 @@
       <div class="mt-8 text-center">
         <h1 class="text-2xl text-white font-bold"> {{ user.first_name }} {{ user.last_name }}</h1>
         <p class="text-lg text-gray-400 mb-4">Utilisateur depuis : {{ new Date(user.created_at).toLocaleDateString() }}</p>
-        <Link :href="`profil/${user.id}/edit`" class="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2 bg-purple-500 hover:bg-yellowFirst-700 transition-all focus:ring-purple-900 uppercase">Modifier mes informations </Link>
+        <Link :href="`profil/edit`" class="focus:outline-none text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2 bg-purple-500 hover:bg-yellowFirst-700 transition-all focus:ring-purple-900 uppercase">Modifier mes informations </Link>
       </div>
       <br>
       <br>

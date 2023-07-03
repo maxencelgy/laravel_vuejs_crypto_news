@@ -56,7 +56,7 @@ Route::get('profil', [UsersController::class, 'profile'])
     ->name('users.profil')
     ->middleware('auth');
 
-Route::get('profil/{user}/edit', [UsersController::class, 'edit'])
+Route::get('profil/edit', [UsersController::class, 'edit'])
     ->name('users.edit')
     ->middleware('auth');
 
@@ -93,7 +93,7 @@ Route::get('users/create', [UsersController::class, 'create'])
 //    ->name('users.store')
 //    ->middleware('auth');
 
-Route::get('users/{user}/edit', [UsersController::class, 'edit'])
+Route::get('users/edit', [UsersController::class, 'edit'])
     ->name('users.edit')
     ->middleware('auth');
 

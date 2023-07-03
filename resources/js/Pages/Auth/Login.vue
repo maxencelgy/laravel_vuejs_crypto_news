@@ -30,18 +30,15 @@
 
 <script>
 import {Head, Link} from '@inertiajs/inertia-vue3'
-import Logo from '@/Shared/Logo'
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Header from '@/Shared/Header'
-import SelectInput from "@/Shared/SelectInput.vue";
-import FileInput from "@/Shared/FileInput.vue";
+
 export default {
   components: {
-    FileInput, SelectInput, Link,
+    Link,
     Head,
     LoadingButton,
-    Logo,
     TextInput,
   },
   layout: Header,
