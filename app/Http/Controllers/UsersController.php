@@ -40,10 +40,11 @@ class UsersController extends Controller
     public function create()
     {
 
-        $admin = Auth::user()->isAdmin();
+        $admin = Auth::user() ? Auth::user()->getRole() : '';
+
 
         return Inertia::render('Users/Create', [
-            'user' => $admin,
+            'admin' => $admin,
         ]);
     }
 

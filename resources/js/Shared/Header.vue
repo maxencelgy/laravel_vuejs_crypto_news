@@ -78,16 +78,14 @@
       </div>
       <div>
         <h3 class="text-2xl mb-4 font-semibold text-white">À propos</h3>
-        <p class="text-gray-400 mb-2 text-lg">Notre équipe</p>
-        <p class="text-gray-400 mb-2 text-lg">Nous contacter</p>
-        <p class="text-gray-400 mb-2 text-lg">azdzad</p>
-        <p class="text-gray-400 mb-2 text-lg">ezkn</p>
+        <p class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Notre équipe</p>
+        <p class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Nous contacter</p>
       </div>
       <div>
         <h3 class="text-2xl mb-4 font-semibold text-white">Mentions légales</h3>
-        <p class="text-gray-400 mb-2 text-lg">Mention legales</p>
-
-        <p class="text-gray-400 mb-2 text-lg">Politique de confidentialité</p>
+        <Link :href="`/mentions-legales`" class="text-gray-400 mb-8 text-lg hover:text-purple-500 cursor-pointer">Mention legales</Link>
+        <br>
+        <Link :href="`/politique`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Politique de confidentialité</Link>
       </div>
       <div>
         <h3 class="text-2xl mb-4 font-semibold text-white">Réseaux sociaux</h3>

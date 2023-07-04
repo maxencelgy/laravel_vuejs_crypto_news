@@ -17,7 +17,14 @@
             <text-input v-model="form.password" :error="form.errors.password" class="pb-8 pr-6 w-full"
                         type="password" autocomplete="new-password" label="Mot de passe * "/>
 
-            <select-input v-if="admin" v-model:"fo"></select-input>
+            <label class="text-base text-gray-200 form-label mb-2"> Choisissez un rôle. Cette option est disponible que pour l'administrateur. </label>
+            <select-input class=" text-white mb-4" v-if="admin == 'admin'" v-model="form.admin" :error="form.errors.password" >
+              <option selected value=""> Choisissez un role</option>
+              <option value="1">Utilisateur</option>
+              <option value="2">Modérateur</option>
+              <option value="3">Administrateur</option>
+            </select-input>
+
 
             <file-input v-model="form.photo" :error="form.errors.photo" class="pb-8 pr-6 w-full" type="file"
                         accept="image/*" label="Photo"/>
@@ -40,10 +47,9 @@
 import {Head, Link} from '@inertiajs/inertia-vue3'
 import FileInput from '@/Shared/FileInput'
 import TextInput from '@/Shared/TextInput'
-import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import Header from '@/Shared/Header'
-import SelectInput from "@/Shared/SelectInput.vue";
+import SelectInput from '@/Shared/SelectInput'
 
 export default {
   components: {
@@ -57,7 +63,7 @@ export default {
   layout: Header,
   remember: 'form',
   props: {
-    admin: Object,
+    admin: String,
   },
   data() {
     return {
@@ -68,8 +74,11 @@ export default {
         password: '',
         owner: false,
         photo: null,
+        admin: '',
       }),
     }
+  },
+  mounted() {
   },
   methods: {
     store() {

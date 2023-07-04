@@ -8,6 +8,7 @@ use App\Http\Controllers\GuidesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\GuidesAdminController;
+use App\Http\Controllers\MentionsLegalesController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
 use App\Models\Category;
@@ -200,3 +201,9 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
+
+Route::get('/mentions-legales', [MentionsLegalesController::class, 'index'])
+    ->name('mentions-legales');
+
+Route::get('/politique', [MentionsLegalesController::class, 'politique'])
+    ->name('politique');

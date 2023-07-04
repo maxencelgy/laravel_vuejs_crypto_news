@@ -21,11 +21,6 @@
                 <text-input v-model="form.email" :error="form.errors.email" class="pb-8 pr-6 w-full lg:w-1/2"
                             label="Email"/>
 
-
-
-                <select-input v-if="form.role == 'admin'" v-model="form.role" :error="form.errors.role" class="pb-8 pr-6 w-full lg:w-1/2"
-                              :options="roles" label="Role"/>
-
 <!--                <text-input v-model="form.password" :error="form.errors.password" class="pb-8 pr-6 w-full lg:w-1/2"-->
 <!--                            type="password" autocomplete="new-password" label="Password"/>-->
                 <file-input v-model="form.photo" :error="form.errors.photo" class="pb-8 pr-6 w-full lg:w-1/2"
