@@ -1,26 +1,74 @@
 /* Reset */
 @import 'tailwindcss/base';
 
-
 /* Components */
 @import 'tailwindcss/components';
 
-
-
 /* Utilities */
 @import 'tailwindcss/utilities';
+
 @font-face {
     font-family: 'Roboto';
     src: url('/public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
 
+html {
+    overflow-x: hidden
 }
 
 body {
-    font-family: 'Roboto', sans-serif!important;
+    font-family: 'Roboto', sans-serif !important;
 }
 
 .wrap {
     max-width: 1500px;
     margin: 0 auto;
+    padding: 0 4rem;
     width: 100%;
+}
+
+
+/* Responsive */
+
+@media (max-width: 1640px) {
+
+}
+
+@media (max-width: 1400px) {
+    .box-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 100% !important;
+        margin-bottom: 1rem;
+
+    }
+
+    .box-right {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 996px) {
+    .top-flex {
+        flex-direction: column;
+    }
+    .top-flex div{
+        width: 100%!important;
+        margin-top: 2rem;
+    }
+}
+
+
+
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 0 1rem;
+  }
+
+
+
 }

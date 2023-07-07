@@ -1,8 +1,7 @@
 <template>
-  <h2
-    class="pt-12 wrap mb-8 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600 ">
+  <h2 class="pt-12 wrap mb-16 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600" style="margin-bottom: 2rem">
     Sélection de la semaine</h2>
-  <div class=" wrap flex  justify-between py-10 pb-16">
+  <div class=" wrap flex  justify-between py-10 pb-16 box-card">
     <CardPricipale
       width="width: 59%;"
       cardClass="custom-card"
@@ -15,9 +14,9 @@
       :link="`/guides/${filteredOneItems[0].id}`"
       buttonText="Lire la suite"
     />
-    <div class="flex flex-col  items-left justify-between gap-4" style="width: 39%">
+    <div class="flex flex-col  items-left justify-between gap-4 box-right" style="width: 39%">
       <Link v-for="article in filteredItems" :href="`/guides/${article.id}`"
-            class="flex flex-col  rounded-lg shadow  md:flex-row md:max-w-xl border-gray-700 bg-purple-600 hover:bg-purple-300">
+            class="flex flex-col  rounded-lg shadow  md:flex-row  border-gray-700 bg-purple-600 hover:bg-purple-300">
         <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
              :src="`/img/${article.image}`" alt="">
         <div class="flex flex-col justify-between py-2">

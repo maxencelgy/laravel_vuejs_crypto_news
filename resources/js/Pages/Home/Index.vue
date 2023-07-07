@@ -1,7 +1,7 @@
 <template>
   <Header>
     <section class="pt-16 bg-purple-600">
-      <div class="wrap pt-20 bg-purple-600 flex items-top justify-between  ">
+      <div class="wrap top-flex pt-20 bg-purple-600 flex items-top justify-between  ">
         <div class="h-full" style="width: 39%">
           <h1 class="mb-4 text-5xl font-extrabold leading-none tracking-tight text-gray-900 text-white">Explorez
             l'avenir de la finance avec notre blog dédié à la
@@ -30,10 +30,10 @@
       </div>
     </section>
 
-    <div id="selection" class="bg-purple-400 w-full">
+    <div id="selection" class="bg-purple-400 w-full py-8">
       <Banner :categories="categories" :users="users" :articlesOne="articlesOne"/>
     </div>
-    <div class="bg-purple-700">
+    <div class="bg-purple-700" style="padding-top: 2rem">
       <h2
         class="pt-12 wrap mb-8 text-4xl font-bold leading-none tracking-tight text-white underline underline-offset-3 decoration-8  decoration-yellowFirst-600 ">
         Actu des crypto-monnaies</h2>
