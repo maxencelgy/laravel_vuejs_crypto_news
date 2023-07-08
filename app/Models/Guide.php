@@ -17,7 +17,8 @@ class Guide extends Model
     }
 
 
-    public static function  getArticlesLiked(){
+    public static function getArticlesLiked()
+    {
 
         $likes = Like::where('userId', auth()->user()->id)->get();
 
@@ -29,7 +30,9 @@ class Guide extends Model
     }
 
 
-    public function getCategory(){
+
+    public function getCategory()
+    {
         return Category::where('id', $this->categoryId)->first()->title;
     }
 
@@ -41,7 +44,7 @@ class Guide extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('title', 'like', '%'.$search.'%');
+            $query->where('title', 'like', '%' . $search . '%');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
@@ -51,13 +54,14 @@ class Guide extends Model
         });
     }
 
-    public function isLiked(){
-        if (Like::where('userId', auth()->user()->id)->where('guide_id', $this->id)){
+    public function isLiked()
+    {
+        if (Like::where('userId', auth()->user()->id)->where('guide_id', $this->id)) {
             return 'like';
-        }else {
+        } else {
             return 'pas like';
         }
-     }
+    }
 
 
 }

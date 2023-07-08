@@ -3,6 +3,8 @@
     <div class="bg-purple-600">
       <div class="wrap flex justify-center pb-16">
         <div class="w-full pb-16">
+          <h1 class="text-green-400 text-2xl text-center mb-4">
+            L'article sera disponible une fois que l'administrateur l'aura accepté.</h1>
           <div class="img" :style="{ backgroundImage:'url(/img/'+ article.image +')' }"></div>
           <div class="container mx-auto mt-8 ">
             <h1 class="text-5xl uppercase font-bold text-center text-white mb-4">{{ article.title }}</h1>
@@ -22,6 +24,8 @@
 <script>
 // import { Head } from '@inertiajs/inertia-vue3'
 import Header from '@/Shared/Header'
+import List from "@/Pages/Blog/List.vue";
+
 export default {
   components: {},
   layout: Header,

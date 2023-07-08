@@ -20,7 +20,7 @@ class GuidesController extends Controller
         return Inertia::render('Guides/Index', [
             'likes' => Like::all(),
             'users' => User::all(),
-            'articles' => Guide::all(),
+            'articles' => Guide::where('online', 1)->get(),
             'categories' => Category::all(),
             'user' => [
                 'id' => Auth::user()->id ?? 0,
@@ -40,12 +40,23 @@ class GuidesController extends Controller
     }
 
     public function show(Guide $guide){
+        if (!$guide->online) {
+            return Redirect::route('home');
+        }
         return Inertia::render('Guides/Show', [
             'article' => $guide,
             'categories' => Category::all(),
             'users' => User::all(),
         ]);
     }
+    public function success(Guide $guide){
+        return Inertia::render('Guides/Success', [
+            'article' => $guide,
+            'categories' => Category::all(),
+            'users' => User::all(),
+        ]);
+    }
+
 
     public function store(Request $request)
     {
@@ -63,7 +74,7 @@ class GuidesController extends Controller
             'categoryId' => $request->get('categoryId'),
         ]);
 
-        return redirect()->route('guides.show', $guide)->with('success', 'Guide créé.');
+        return redirect()->route('guides.success', $guide)->with('success', 'Le guide apparaît une fois que l\'administrateur l\'aura mis en ligne.');
     }
 
 }

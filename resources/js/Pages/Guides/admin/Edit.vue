@@ -10,35 +10,43 @@
     </trashed-message>
     <div class=" bg-white rounded-md shadow overflow-hidden">
       <form @submit.prevent="update">
-        <div class="flex flex-wrap -mb-8 -mr-6 p-8">
-          <text-input v-model="form.title" :error="form.errors.title" class="!bg-red-500 pb-8 pr-6 w-full w-full>"
-                      label="Title"/>
-          <CkeditorInput  @content-change="handleValueChange" style="width: 98.5%"></CkeditorInput>
-          <text-input class="hidden" v-model="form.content" :model-value="form.content"></text-input>
-          <text-input class="hidden" v-model="form.user_id" :model-value="form.user_id"></text-input>
-          <div class="flex flex-col lg:w-1/2">
-            <img :src="`/img/${form.image}`" class="text-center rounded-xl " style="width: 500px">
+        <div class=" flex-wrap -mb-8 -mr-6 p-8">
+          <text-input v-model="form.title" :error="form.errors.title" class=" pb-8 pr-6 w-full w-full>"
+                      label="Titre"/>
+          <div class="flex items-center justify-between">
+            <CkeditorInput @content-change="handleValueChange" :text="form.content"   style="width: 98%"></CkeditorInput>
+            <text-input class="hidden" v-model="form.content" :model-value="this.content"></text-input>
+
+          </div>
+          <br>
+          <div>
+            <text-input class="hidden" v-model="form.content" :model-value="form.content"></text-input>
+            <text-input class="hidden" v-model="form.user_id" :model-value="form.user_id"></text-input>
+            <div class="flex flex-col lg:w-1/2">
+              <img :src="`/img/${form.image}`" class="text-center rounded-xl " style="width: 500px">
+              <br>
+              <file-input v-model="form.image" @change="handleFileChange" :error="form.errors.image"
+                          class="pb-8 !text-gray-400 pr-6 w-full" type="file"
+                          accept="image/*" label="Photo"/>
+            </div>
+
+            <select-input v-model="form.categoryId" :error="form.errors.category"
+                          class="pb-8 !text-gray-400 pr-6 lg:w-1/2"
+                          label="Catégorie">
+              <option value=""> Sélectionnez une catégorie</option>
+              <option :value="`${item.id}`" v-for="item in categories" :key="item.id">{{ item.title }}</option>
+            </select-input>
+            <label class="relative inline-flex items-center mb-5 cursor-pointer">
+              <input name="online" :value="form.online" v-model="form.online" type="checkbox"
+                     class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 peer-focus:ring-blue-800 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-blue-600"></div>
+              <span class="ml-3 text-sm font-medium text-gray-900 text-gray-300">Mettre en ligne</span>
+            </label>
             <br>
-            <file-input v-model="form.image" @change="handleFileChange" :error="form.errors.image"
-                        class="pb-8 !text-gray-400 pr-6 w-full" type="file"
-                        accept="image/*" label="Photo"/>
+            <br>
+            <br>
           </div>
 
-          <select-input v-model="form.categoryId" :error="form.errors.category"
-                        class="pb-8 !text-gray-400 pr-6 lg:w-1/2"
-                        label="Catégorie">
-            <option value=""> Sélectionnez une catégorie</option>
-            <option :value="`${item.id}`" v-for="item in categories" :key="item.id">{{ item.title }}</option>
-          </select-input>
-          <label class="relative inline-flex items-center mb-5 cursor-pointer">
-            <input name="online" :value="form.online" v-model="form.online" type="checkbox"
-                   class="sr-only peer">
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 peer-focus:ring-blue-800 rounded-full peer bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-blue-600"></div>
-            <span class="ml-3 text-sm font-medium text-gray-900 text-gray-300">Mettre en ligne</span>
-          </label>
-          <br>
-          <br>
-          <br>
 
         </div>
         <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
@@ -97,8 +105,13 @@ export default {
     }
   },
   methods: {
+    handleValueChange(value) {
+      this.form.content = value;
+    },
     update() {
       this.form.put(`/admin/guides/${this.guide.id}`)
+    },
+    copyText() {
     },
     destroy() {
       if (confirm('Are you sure you want to delete this guide?')) {

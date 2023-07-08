@@ -3,7 +3,7 @@
     <div class="bg-purple-600 p-6">
       <Head :title="`${form.first_name} ${form.last_name}`"/>
 
-      <div class="flex  mb-8 ">
+      <div class="flex items-center justify-center mb-8 ">
         <img v-if="user.photo" class=" block ml-4 w-8 h-8 rounded-full" :src="user.photo"/>
       </div>
       <div class="flex items-center justify-center">

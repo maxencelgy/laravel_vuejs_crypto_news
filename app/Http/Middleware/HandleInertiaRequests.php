@@ -38,12 +38,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            'categories' => function () use ($request) {
-            return Category::orderBy('title')
-                ->get()
-                ->map
-                ->only('id', 'title');
-            },
+
             'url' =>  request()->getSchemeAndHttpHost(),
             'auth' => function () use ($request) {
                 return [

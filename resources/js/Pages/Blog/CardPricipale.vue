@@ -1,7 +1,7 @@
 <template>
-  <div :style="width" class="image-container shadow-lg hove rounded-lg shadow bg-purple-600 hover:bg-purple-300">
+  <div :style="width " style="word-wrap: break-word" class="image-container shadow-lg hove rounded-lg shadow bg-purple-600 hover:bg-purple-300">
     <a :href="link">
-      <div class="img" :style="{ backgroundImage:'url(/img/'+ imageSrc +')' }"></div>
+      <div class="imgPrincipal" :style="{ backgroundImage:'url(/img/'+ imageSrc +')' }"></div>
 
     </a>
     <div class="flex justify-between px-4 items-center w-full">
@@ -18,11 +18,11 @@
         <p class="ml-2 text-sm">{{ username }}</p>
       </div>
     </div>
-    <div class="p-5">
+    <div class="pt-2 pb-5 pl-5 pr-5">
       <a :href="link">
         <h5 class="mb-2 text-4xl font-bold tracking-tight text-white">{{ title }}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-400 no-truncate">{{ description }}</p>
+      <p class="mb-3 font-normal text-gray-400 no-truncate"> {{ tronquerTexte(description, 300  ) }}</p>
       <a :href="link"
          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-purple-500 hover:bg-yellowFirst-700 transition-all">
         {{ buttonText }}
@@ -43,6 +43,17 @@ import dayjs from "dayjs";
 export default {
   name: 'CardPrincipale',
   methods: {
+    tronquerTexte(texte, longueurMax) {
+      const div = document.createElement('div');
+      div.innerHTML = texte;
+
+      let texteTronque = div.textContent || div.innerText;
+      if (texteTronque.length > longueurMax) {
+        texteTronque = texteTronque.substring(0, longueurMax) + '...';
+      }
+
+      return texteTronque;
+    },
     formatRelativeDate(date) {
       const currentDate = dayjs();
       const articleDate = dayjs(date);
@@ -114,7 +125,7 @@ export default {
   max-width: 100%;
 
 }
-.img {
+.imgPrincipal {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

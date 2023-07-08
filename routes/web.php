@@ -114,7 +114,8 @@ Route::post('guides', [GuidesController::class, 'store'])
 Route::get('guides/{guide}', [GuidesController::class, 'show'])
     ->name('guides.show');
 
-
+Route::get('guides/{guide}/success', [GuidesController::class, 'success'])
+    ->name('guides.success')->middleware(['admin', 'moderator']);
 
 
 

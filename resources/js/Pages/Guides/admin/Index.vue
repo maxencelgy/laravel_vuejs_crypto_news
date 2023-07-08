@@ -11,7 +11,7 @@
           <option value="only">Only Trashed</option>
         </select>
       </search-filter>
-      <Link class="btn-indigo" href="/admin/guides/create">
+      <Link class="btn-indigo" href="/guides/create">
         <span>Create</span>
         <span class="hidden md:inline">&nbsp;Guides</span>
       </Link>

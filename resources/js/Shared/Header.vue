@@ -7,15 +7,22 @@
       </Link>
       <div>
         <div class="gap-4">
+          <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl " :href="`#selection`">
+            Sélection de la semaine
+          </Link>
+          <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl " :href="`/#follow`">
+            Cryptos à suivre
+          </Link>
+
           <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl " :href="`/guides`">
             Guides
           </Link>
-          <Link @click="desactiverShow" class="mt-2 mb-8 text-white hover:text-purple-500 font-semibold text-xl " :href="`/`">La
+          <Link @click="desactiverShow" class="mt-6 mb-8 text-white hover:text-purple-500 font-semibold text-xl " :href="`/#boutique`">La
             boutique
           </Link>
         </div>
       </div>
-      <div v-if="$page.props.auth.user">
+      <div v-if="$page.props.auth.user && showMobileMenu">
         <div id="dropdown"/>
         <div class="md:flex md:flex-col">
           <dropdown class="mt-1" placement="bottom-end">
@@ -34,7 +41,7 @@
               </div>
             </template>
             <template #dropdown>
-              <div class=" mt-2 py-2  bg-white rounded shadow-xl">
+              <div class=" mt-2 py-2 !text-white  bg-purple-600 rounded shadow-xl">
                 <Link @click="desactiverShow" v-if="auth.user.role == 3"
                       class="text-center flex items-center justify-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                       :href="`/admin`">
@@ -77,6 +84,7 @@
                           d="M31.59 71.62C19.97 66.35 16.55 52.6 14.73 46.63c-.24-.79-.12-1.54.67-1.78s1.26.27 1.51 1.06c1.32 4.33 6.45 18.79 17.04 22.9c.77.3 1.97 1.03 1.32 2.28c-.43.81-1.81 1.38-3.68.53zM12.68 24.63c-.56-1.16-.79-2.26-3.84-3.53c-.77-.32-1.28-1.03-1.07-1.83s1.01-1.4 2.17-1.2c3.77.65 4.59 4.48 4.75 5.81c.15 1.28-1.44 1.91-2.01.75zm84.19 46.99c11.62-5.27 15.04-19.02 16.86-24.99c.24-.79.12-1.54-.67-1.78s-1.26.27-1.51 1.06c-1.32 4.33-6.45 18.79-17.04 22.9c-.77.3-1.97 1.03-1.32 2.28c.43.81 1.81 1.38 3.68.53zm18.91-46.99c.56-1.16.79-2.26 3.84-3.53c.77-.32 1.28-1.03 1.07-1.83s-1.01-1.4-2.17-1.2c-3.77.65-4.59 4.48-4.75 5.81c-.15 1.28 1.45 1.91 2.01.75zm-56.4 4.92c.61-1.25 1.68-2.96 5.17-3.68c1.34-.28 1.73-.86 1.61-1.74c-.24-1.83-2.52-1.7-3.75-1.41c-4.1.96-5.01 4.6-5.18 6.04c-.17 1.37 1.55 2.04 2.15.79z"/>
                   </svg>
                 </Link>
+
                 <Link @click="desactiverShow" class="text-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                       :href="`/profil`">Mon
                   profil
@@ -96,27 +104,33 @@
           </dropdown>
         </div>
       </div>
-      <Link v-else
-            class=" text-black focus:outline-none transition-all  text-black uppercase bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2"
-            :href="`/login`">
-        S'inscrire / Se connecter
-      </Link>
+        <div v-else class=" text-center">
+          <Link  @click="desactiverShow"
+                 class="focus:outline-none transition-all  text-black  bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2"
+                :href="`/login`">
+            S'inscrire / Se connecter
+          </Link>
+        </div>
       </div>
     </div>
-    <div class="z-80 sticky top-0" style="z-index: 900;">
+    <div class="z-80 sticky" style="top: -1px; z-index: 900;">
       <nav class="z-80 bg-purple-600" :class="{ '!bg-purple-400 shadow': !showElement }">
         <div class="z-80 wrap flex flex-wrap items-center justify-between mx-auto p-2">
           <div class="flex items-center">
             <Link :href="`/`" class="flex items-center mr-6">
               <logo class="block mx-auto w-full fill-white" height="100"/>
             </Link>
-
-
             <div class="gap-4">
+              <Link  class="not-hidden not-hidden-desktop text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/#selection`">
+                Sélection de la semaine
+              </Link>
+              <Link  class="not-hidden not-hidden-desktop text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/#follow`">
+                Cryptos à suivre
+              </Link>
               <Link class="not-hidden not-hidden-desktop text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/guides`">
                 Guides
               </Link>
-              <Link class="not-hidden not-hidden-desktop text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/`">La
+              <Link class="not-hidden not-hidden-desktop text-white hover:text-purple-500 font-semibold text-xl ml-8" :href="`/#boutique`">La
                 boutique
               </Link>
             </div>
@@ -140,7 +154,7 @@
                   </div>
                 </template>
                 <template #dropdown>
-                  <div class="not-hidden mt-2 py-2 text-sm bg-white rounded shadow-xl">
+                  <div class=" mt-2 py-2 text-sm bg-white rounded shadow-xl">
                     <Link v-if="auth.user.role == 3"
                           class="text-center flex items-center justify-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                           :href="`/admin`">
@@ -238,10 +252,12 @@
         </Link>
         <p class="text-lg text-gray-400">Copyright © 2023 daily-crypto.fr</p>
       </div>
-      <div>
+      <div class="flex flex-col">
         <h3 class="text-2xl mb-4 font-semibold text-white">À propos</h3>
-        <p class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Notre équipe</p>
-        <p class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Nous contacter</p>
+        <Link :href="`/#selection`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Sélection de la semaine</Link>
+        <Link :href="`/#follow`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Cryptos à suivre</Link>
+        <Link :href="`/guides`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Guides</Link>
+        <Link :href="`/#boutique`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">La boutique</Link>
       </div>
       <div>
         <h3 class="text-2xl mb-4 font-semibold text-white">Mentions légales</h3>
@@ -357,9 +373,9 @@ html {
 }
 
 .menu-burger {
-  background-color: #453175;
+  background-color: #252345;
   position: fixed;
-  width: 250px;
+  width: 550px;
   height: 2000px;
   z-index: 1000;
   border-top-right-radius: 1.5rem;
@@ -378,7 +394,7 @@ html {
 display: flex;flex-direction: column;
   text-align: center;
 }
-@media (max-width: 840px) {
+@media (max-width: 1075px) {
   .not-hidden {
     display: none;
   }
@@ -395,4 +411,10 @@ display: flex;flex-direction: column;
   transform: none!important;
 }
 
+@media (max-width: 740px) {
+  .menu-burger {
+    width: 250px;
+  }
+
+}
 </style>

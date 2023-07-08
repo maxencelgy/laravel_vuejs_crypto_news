@@ -2,7 +2,7 @@
   <Header>
     <div class="p-8 bg-purple-400">
       <Head title="Poster un article"/>
-      <div class=" wrap flex justify-between items-start py-8">
+      <div class=" wrap flex justify-between items-start py-8 box-contente">
         <div style="width: 48%" class="rounded border !text-gray-400 rounded-lg shadow bg-purple-600 border-gray-700">
           <form @submit.prevent="store">
             <div class="px-10 py-12">
@@ -16,15 +16,16 @@
                 <text-input v-model="form.title" :error="form.errors.title" class="pb-8 !text-gray-400 pr-6 w-full"
                             label="Titre"/>
                 <text-input v-model="form.user_id" :error="form.errors.title" class="hidden pb-8 pr-6 w-full"
-                            label="id"/>                <br>
+                            label="id"/>
+                <br>
 
-                <CkeditorInput @content-change="handleValueChange" ></CkeditorInput>
-                <text-input class="hidden" v-model="form.content" :model-value="this.content"> </text-input>
+                <CkeditorInput @content-change="handleValueChange" style="width: 95%!important;"></CkeditorInput>
+                <text-input class="hidden" v-model="form.content" :model-value="this.content"></text-input>
 
-<!--                <text-input v-model="form.content" :model-value="this" :error="form.errors.content" class="hidden pb-8 pr-6 w-full" />-->
+                <!--                <text-input v-model="form.content" :model-value="this" :error="form.errors.content" class="hidden pb-8 pr-6 w-full" />-->
 
                 <!--                <textarea-input v-model="form.content" :error="form.errors.content" class="pb-8 !text-gray-400 pr-6 w-full"-->
-<!--                                label="Contenu"/>-->
+                <!--                                label="Contenu"/>-->
 
                 <select-input v-model="form.categoryId" :error="form.errors.categoryId"
                               class="pb-8 !text-gray-400 pr-6 w-full"
@@ -35,25 +36,34 @@
               </div>
 
               <div class="px-8 py-4 border-gray-100">
-                <loading-button :loading="form.processing" class="transition-all btn-indigo bg-purple-500 w-full" type="submit">Poster l'article
+                <loading-button :loading="form.processing" class="transition-all btn-indigo bg-purple-500 w-full"
+                                type="submit">Poster l'article
                 </loading-button>
               </div>
             </div>
           </form>
         </div>
-        <div style="width: 48%;">
-          <CardPricipale
-            width="width: 100%;"
-            :cardClass="custom-card"
-            :imageSrc="previewImage"
-            imageAlt=""
-            date="À l'instant"
-            :username="user.first_name + ' ' + user.last_name"
-            :title="form.title"
-            :description="`content`"
-            link="#"
-            buttonText="Lire la suite"
-          />
+        <div style="width: 48%; word-wrap: break-word;">
+
+
+
+          <img :style="{ backgroundImage:'url('+previewImage +')' }" class="img" style="" alt="">
+          <h1 class="text-5xl uppercase font-bold text-center text-white mb-4">{{ form.title }}</h1>
+          <div v-html="form.content" class="mt-8 text-white text-2xl"></div>
+
+
+          <!--          <CardPricipale-->
+          <!--            width="width: 100%;"-->
+          <!--            :cardClass="custom-card"-->
+          <!--            :imageSrc="previewImage"-->
+          <!--            imageAlt=""-->
+          <!--            date="À l'instant"-->
+          <!--            :username="user.first_name + ' ' + user.last_name"-->
+          <!--            :title="form.title"-->
+          <!--            :description="`content`"-->
+          <!--            link="#"-->
+          <!--            buttonText="Lire la suite"-->
+          <!--          />-->
 
         </div>
       </div>
@@ -84,10 +94,12 @@ import Header from '@/Shared/Header'
 import FileInput from "@/Shared/FileInput.vue";
 import CardPricipale from "@/Pages/Blog/CardPricipale.vue";
 import CkeditorInput from "@/Shared/CkeditorInput.vue";
+import Card from "@/Pages/Blog/Card.vue";
 
 
 export default {
   components: {
+    Card,
     CkeditorInput,
     FileInput,
     CardPricipale,
@@ -149,3 +161,38 @@ export default {
   }
 }
 </script>
+<style>
+.img {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+@media (max-width: 1435px) {
+  .box-contente {
+    flex-direction: column;
+  }
+  .box-contente div {
+    width: 100%!important;
+    margin-bottom: 1rem;
+
+  }
+  .wrap {
+    padding: 0;
+  }
+}
+
+</style>

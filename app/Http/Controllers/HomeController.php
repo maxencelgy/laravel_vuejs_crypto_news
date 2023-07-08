@@ -12,8 +12,8 @@ class HomeController extends Controller
     public function index()
     {
         return Inertia::render('Home/Index', [
-            'articles' =>  Guide::latest('created_at')->take(3)->get(),
-            'articlesOne' =>  Guide::take(5)->get(),
+            'articles' =>  Guide::latest('created_at')->take(3)->where('online', 1)->get(),
+            'articlesOne' =>  Guide::take(5)->where('online', 1)->get(),
             'categories' => Category::all(),
             'likes' => Like::all(),
             'user' => auth()->user(),

@@ -1,6 +1,7 @@
 <template>
   <div :class="$attrs.class">
-    <label v-if="label" class="text-gray-300 form-label" :for="id">{{ label }}:</label>
+    <label v-if="label" class="text-gray-300 form-label" :for="id">{{ label }}:</label><br>
+    <br>
     <select :id="id" ref="input" v-model="selected" v-bind="{ ...$attrs, class: null }" class="bg-purple-400 text-gray-400 border border-purple-500 form-select" :class="{ error: error }">
       <slot />
     </select>

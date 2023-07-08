@@ -75,7 +75,7 @@ class GuidesAdminController extends Controller
         $guide->update(
             Request::validate([
                 'title' => ['nullable', 'max:50'],
-                'content' => ['nullable', 'max:50'],
+                'content' => ['nullable'],
                 'image' => ['nullable', 'max:150'],
                 'categoryId' => ['nullable', 'max:50'],
                 'user_id' => ['nullable', 'max:50'],

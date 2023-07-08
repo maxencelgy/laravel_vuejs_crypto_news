@@ -1,9 +1,11 @@
 <template>
   <div>
-    <editor v-model="content" :content="htmlCode" :init="editorConfig" @change="updateHTML;"></editor>
-<!--    <text-input v-model="form.content" :error="form.errors.content" class=" pb-8 !text-gray-400 hidden pr-6 w-full"-->
-<!--                    label="Contenu" :model-value="htmlCode"/>-->
+    <editor  :initial-value="`Once upon a time...`" :model-value="`azdaz`" v-model="content" :content="htmlCode" :init="editorConfig"  @change="updateHTML;">
+    </editor>
+    <!--    <text-input v-model="form.content" :error="form.errors.content" class=" pb-8 !text-gray-400 hidden pr-6 w-full"-->
+    <!--                    label="Contenu" :model-value="htmlCode"/>-->
     <br>
+
   </div>
 </template>
 
@@ -23,7 +25,12 @@ export default {
       form: this.$inertia.form({
         content: '',
       }),
+
+
     };
+  },
+  props: {
+    text: String,
   },
   watch: {
     "content": function () {
@@ -42,10 +49,14 @@ export default {
     editorConfig() {
       return {
         plugins: 'link, lists, image, table, media',
+        init_instance_callback: (editor) => {
+          editor.setContent(this.text);
+        }
 
       };
     },
   },
+
 };
 </script>
 
@@ -53,6 +64,7 @@ export default {
 .tox-notification {
   display: none !important;
 }
+
 .tox-statusbar__branding {
   display: none !important;
 }
