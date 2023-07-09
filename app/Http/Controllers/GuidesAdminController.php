@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Guide;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,7 @@ class GuidesAdminController extends Controller
                     'image' => $guide->image,
                     'categorie' => $guide->getCategory(),
                     'user_id' => $guide->user_id,
+                    'online' => $guide->online,
                     'deleted_at' => $guide->deleted_at,
                 ]),
         ]);
@@ -64,8 +66,10 @@ class GuidesAdminController extends Controller
                 'content' => $guide->content,
                 'image' => $guide->image,
                 'categoryId' => $guide->categoryId,
+                'online' => $guide->online,
                 'user_id' => $guide->user_id,
             ],
+            'categories' => Category::all(),
         ]);
     }
 
@@ -74,10 +78,10 @@ class GuidesAdminController extends Controller
 
         $guide->update(
             Request::validate([
-                'title' => ['nullable', 'max:50'],
+                'title' => ['nullable'],
                 'content' => ['nullable'],
                 'image' => ['nullable', 'max:150'],
-                'categoryId' => ['nullable', 'max:50'],
+                'categoryId' => ['nullable'],
                 'user_id' => ['nullable', 'max:50'],
                 'online' => ['required']
             ])

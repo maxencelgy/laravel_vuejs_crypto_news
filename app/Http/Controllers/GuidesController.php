@@ -35,6 +35,7 @@ class GuidesController extends Controller
         $user = Auth::user();
 
         return Inertia::render('Guides/Create', [
+            'categories' => Category::all(),
             'user' => $user,
         ]);
     }

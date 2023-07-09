@@ -12,6 +12,58 @@
     src: url('/public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8B60ED #DFE9EB;
+}
+
+/* Chrome, Edge, et Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; /* Ajoutez cette ligne pour spécifier la hauteur de la barre de défilement horizontale */
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #8B60ED;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #8B60ED;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #8B60ED;
+}
+
+/* Styles spécifiques pour la barre de défilement horizontale */
+*::-webkit-scrollbar-thumb:horizontal {
+    background-color: #8B60ED;
+}
+
+*::-webkit-scrollbar-thumb:hover:horizontal {
+    background-color: #8B60ED;
+}
+
+*::-webkit-scrollbar-thumb:active:horizontal {
+    background-color: #8B60ED;
+}
+
+
 html {
     overflow-x: hidden
 }

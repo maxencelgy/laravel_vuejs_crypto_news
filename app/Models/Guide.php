@@ -11,6 +11,7 @@ class Guide extends Model
     use HasFactory;
     use SoftDeletes;
 
+
     public function resolveRouteBinding($value, $field = null)
     {
         return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
@@ -22,6 +23,7 @@ class Guide extends Model
 
         $likes = Like::where('userId', auth()->user()->id)->get();
 
+        $articles = [];
         foreach ($likes as $like) {
             $articles[] = Guide::where('id', $like->guideId)->first();
         }

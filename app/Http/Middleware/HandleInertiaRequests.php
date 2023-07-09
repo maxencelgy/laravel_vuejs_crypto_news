@@ -28,6 +28,7 @@ class HandleInertiaRequests extends Middleware
         return parent::version($request);
     }
 
+
     /**
      * Defines the props that are shared by default.
      *
@@ -39,7 +40,6 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
 
-            'url' =>  request()->getSchemeAndHttpHost(),
             'auth' => function () use ($request) {
                 return [
                     'user' => $request->user() ? [

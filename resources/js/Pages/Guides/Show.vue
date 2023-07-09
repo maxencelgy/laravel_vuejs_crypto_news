@@ -54,4 +54,12 @@ h2 {
   margin-bottom: 0.75rem;
 }
 
+ol {
+  list-style: decimal!important;
+}
+ol li {
+  margin-bottom: 0.5rem;
+  list-style: decimal!important;
+}
+
 </style>

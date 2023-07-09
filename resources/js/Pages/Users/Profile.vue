@@ -20,7 +20,7 @@
         </h2>
 
         <div class="flex flex-wrap justify-between ">
-            <Card style="width: 31.33%; padding: 0!important;" class="mr-6" v-for="article in articles"
+            <Card style="width: 31.33%; padding: 0!important;" v-if="articles" class="mr-6" v-for="article in articles"
                   :imageSrc="article.image"
                   imageAlt=""
                   :category="getCategoryName(article.categoryId)"

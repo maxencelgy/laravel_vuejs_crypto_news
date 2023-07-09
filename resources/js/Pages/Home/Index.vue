@@ -10,7 +10,7 @@
           <p class="mb-8 font-normal text-gray-500 text-gray-400">Plongez dans l'univers fascinant de la
             crypto-monnaie et explorez les opportunités infinies de l'ère numérique avec notre blog dédié aux dernières
             tendances et analyses du monde des cryptos</p>
-          <div class="flex gap-4 items-center">
+          <div class="flex gap-4 items-center grp">
             <Link href="#selection"
                   class="transition-all uppercase font-semibold  inline-flex w-full items-center justify-center px-5 py-3 text-base  text-center text-white bg-purple-500 rounded-lg hover:bg-yellowFirst-700 focus:ring-4 focus:ring-blue-300 focus:ring-blue-900 ">
               Découvrir
@@ -23,7 +23,11 @@
 
           </div>
         </div>
-        <div class="relative lottie" style="height: 480px!important; width: 59%;">
+        <div class="relative lottie lottie-hidden" style="height: 250px!important; width: 59%;">
+          <div class=" absolute" style="z-index: 100; top: 0; height: 100%; width: 100%"></div>
+          <iframe height="100%" width="100%" src="https://lottie.host/?file=ac7b8ee8-a224-445e-ac99-81f7f0b6043f/YUhRKbMPXL.json"></iframe>
+        </div>
+        <div class="relative lottie lottie-not-hidden " style="height: 480px!important; width: 59%;">
           <div class=" absolute" style="z-index: 100; top: 0; height: 100%; width: 100%"></div>
           <iframe height="100%" width="100%"
                   src="https://lottie.host/?file=ac7b8ee8-a224-445e-ac99-81f7f0b6043f/YUhRKbMPXL.json"></iframe>
@@ -92,7 +96,6 @@
             </tbody>
           </table>
         </div>
-
       </div>
 
     </section>
@@ -121,9 +124,8 @@
         </div>
 
         <div>
-
           <div
-               class="relative mx-auto border-gray-800  bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
+            class="relative mx-auto border-gray-800  bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl">
             <div class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
             <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
             <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
@@ -152,11 +154,10 @@ import List from "@/Pages/Blog/List.vue";
 import Banner from "@/Pages/Blog/Banner.vue";
 
 export default {
-
-
   data() {
     return {
       currencies: Object,
+      isScreenSize700px: false
     }
   },
 
@@ -166,6 +167,11 @@ export default {
       container.style.display = 'none';
     });
     this.fetchCurrencies();
+    window.addEventListener('resize', this.checkScreenSize);
+    this.checkScreenSize();
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.checkScreenSize);
   },
   methods: {
     async fetchCurrencies() {
@@ -204,5 +210,26 @@ export default {
 </script>
 
 <style>
+.lottie-hidden {
+  display: none;
+}
+
+.lottie-not-hidden {
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .grp {
+    flex-direction: column;
+  }
+
+  .lottie-hidden {
+    display: block;
+  }
+  .lottie-not-hidden {
+    display: none;
+  }
+}
+
 
 </style>

@@ -1,33 +1,38 @@
 <template>
   <div class="bg-purple-600">
-    <div class="wrap search flex items-center py-4 bg-purple-600 md:py-8 " style="max-width: 1500px; overflow: auto">
-      <!-- Boutons de filtrage -->
+    <div class="wrap">
+      <div class=" search flex items-center  bg-purple-600 md:py-8 " style=" overflow: auto">
+        <!-- Boutons de filtrage -->
 
-      <!-- Barre de recherche -->
-      <input
-        type="text"
-        v-model="searchQuery"
-        @input="searchByQuery"
-        placeholder="Search..."
-        class="border border-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
-      />
-      <button
-        type="button"
-        style="min-inline-size: 200px;" class="inline focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
-        @click="filterByCategory(null)"
-      >
-        Toutes les catégories
-      </button>
-      <button
-        type="button"
-        v-for="categorie in categories"
-        :key="categorie.id" class="inline border border-gray-900 hover:border-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium hover:bg-yellowFirst-700 px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
-        @click="filterByCategory(categorie.id)"
-      >
-        {{ categorie.title }}
-      </button>
+        <!-- Barre de recherche -->
+        <input
+          type="text"
+          v-model="searchQuery"
+          @input="searchByQuery"
+          placeholder="Search..."
+          class="border border-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
+        />
+        <button
+          type="button"
+          style="min-inline-size: 200px;" class="inline focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
+          @click="filterByCategory(null)"
+        >
+          Toutes les catégories
+        </button>
+        <button
+          type="button"
+          style="min-inline-size: 200px;"
+          v-for="categorie in categories"
+          :key="categorie.id" class="inline focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
+          @click="filterByCategory(categorie.id)"
+        >
+          {{ categorie.title }}
+        </button>
+      </div>
     </div>
 
+    <br>
+    <br>
     <!-- Contenu de la liste -->
     <div class="wrap flex pb-4 flex-wrap justify-between" style="min-height: 500px">
       <Card v-if="user"

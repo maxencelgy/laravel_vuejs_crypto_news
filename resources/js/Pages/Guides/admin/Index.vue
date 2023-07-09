@@ -21,6 +21,7 @@
         <thead>
         <tr class="text-left font-bold">
           <th class="pb-4 pt-6 px-6">Title</th>
+          <th class="pb-4 pt-6 px-6">Status</th>
           <th class="pb-4 pt-6 px-6">Content</th>
           <th class="pb-4 pt-6 px-6">Image</th>
           <th class="pb-4 pt-6 px-6">Categorie</th>
@@ -29,11 +30,18 @@
         </thead>
         <tbody>
         <tr v-for="guide in guides.data" :key="guide.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+
           <td class="border-t">
             <Link class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/admin/guides/${guide.id}/edit`">
               {{ guide.title }}
               <icon v-if="guide.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
             </Link>
+          </td>
+          <td class="border-t text-black">
+
+            <span v-if="guide.online == 1" class="bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">En ligne</span>
+            <span v-else class="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Hors ligne</span>
+
           </td>
           <td class="border-t">
             <Link style=" display: inline-block;width: 50ex;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;vertical-align: middle;" class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/admin/guides/${guide.id}/edit`">

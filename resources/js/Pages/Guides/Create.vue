@@ -19,6 +19,15 @@
                             label="id"/>
                 <br>
 
+                <select-input v-model="form.categoryId" :error="form.errors.categoryId"
+                              class="pb-8 !text-gray-400 pr-6 w-full"
+                              label="Catégorie">
+                  <option value=""> Sélectionnez une catégorie</option>
+                  <option :value="`${item.id}`" v-for="item in categories">{{ item.title }}</option>
+                </select-input>
+
+                <br>
+
                 <CkeditorInput @content-change="handleValueChange" style="width: 95%!important;"></CkeditorInput>
                 <text-input class="hidden" v-model="form.content" :model-value="this.content"></text-input>
 
@@ -27,12 +36,6 @@
                 <!--                <textarea-input v-model="form.content" :error="form.errors.content" class="pb-8 !text-gray-400 pr-6 w-full"-->
                 <!--                                label="Contenu"/>-->
 
-                <select-input v-model="form.categoryId" :error="form.errors.categoryId"
-                              class="pb-8 !text-gray-400 pr-6 w-full"
-                              label="Catégorie">
-                  <option value=""> Sélectionnez une catégorie</option>
-                  <option :value="`${item.id}`" v-for="item in categories">{{ item.title }}</option>
-                </select-input>
               </div>
 
               <div class="px-8 py-4 border-gray-100">

@@ -8,6 +8,7 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 
 InertiaProgress.init()
 
+
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),
   title: title => title ? `${title} - Daily Crypto` : 'Daily Crypto',
@@ -15,5 +16,8 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .mount(el)
+      .$nextTick(() => { delete el.dataset.page })
+
   },
+
 })
