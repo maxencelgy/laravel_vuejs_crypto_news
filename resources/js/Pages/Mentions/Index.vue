@@ -81,7 +81,7 @@
 
 <script>
 // import { Head } from '@inertiajs/inertia-vue3'
-import Header from '@/Shared/Header'
+import Header from '@/Shared/Corp.vue'
 
 export default {
   components: {},

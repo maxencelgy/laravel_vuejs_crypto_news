@@ -3,7 +3,7 @@
     Sélection de la semaine</h2>
   <div class=" wrap flex  justify-between py-10 pb-16 box-card">
     <CardPricipale
-      width="width: 59%;"
+      width="width: 39%;"
       cardClass="custom-card"
       :imageSrc="`${filteredOneItems[0].image}`"
       imageAlt=""
@@ -14,19 +14,19 @@
       :link="`/guides/${filteredOneItems[0].id}`"
       buttonText="Lire la suite"
     />
-    <div class="flex flex-col  items-left justify-between gap-4 box-right" style="width: 39%">
+    <div class="flex flex-col  items-left justify-between gap-4 box-right" style="width: 59%">
       <Link v-for="article in filteredItems" :href="`/guides/${article.id}`"
             class="flex flex-col  rounded-lg shadow  md:flex-row  border-gray-700 bg-purple-600 hover:bg-purple-300">
-        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+        <img class="object-cover w-full rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
              :src="`/img/${article.image}`" alt="">
         <div class="flex flex-col justify-between py-2">
           <div class="flex flex-col justify-between px-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-white">{{
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 text-white">{{
                 article.title
               }}</h5>
           </div>
           <div class="px-4 mb-4">
-            <span class=" text-base font-medium mr-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-white">{{  getCategoryName(article.categoryId) }}</span>
+            <span class=" text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-white">{{  getCategoryName(article.categoryId) }}</span>
           </div>
           <div class="flex justify-between px-4 items-center w-full">
             <div class="text-sm text-gray-400 flex items-center">

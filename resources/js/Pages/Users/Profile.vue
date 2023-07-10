@@ -1,5 +1,5 @@
 <template>
-  <Header>
+  <Div>
     <div class="flex flex-col items-center min-h-screen bg-purple-600">
       <div class="w-full h-48 bg-cover bg-center bg-purple-500"></div>
       <div class="w-52 h-52 mt-[-64px] rounded-full overflow-hidden border-4 border-white shadow-lg">
@@ -43,13 +43,13 @@
 
 
 
-  </Header>
+  </Div>
 </template>
 
 
 <script>
 import {Link} from '@inertiajs/inertia-vue3'
-import Header from '@/Shared/Header'
+import Div from '@/Shared/Corp.vue'
 import Card from "@/Pages/Blog/Card.vue";
 
 export default {
@@ -57,7 +57,7 @@ export default {
     Card,
     Link,
   },
-  layout: Header,
+  layout: Div,
   remember: 'form',
   props: {
     articles: Object,

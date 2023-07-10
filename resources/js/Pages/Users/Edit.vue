@@ -50,7 +50,7 @@ import FileInput from '@/Shared/FileInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import TrashedMessage from '@/Shared/TrashedMessage'
-import Header from '@/Shared/Header'
+import Header from '@/Shared/Corp.vue'
 
 export default {
   components: {

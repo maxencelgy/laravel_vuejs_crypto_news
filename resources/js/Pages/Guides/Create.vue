@@ -1,5 +1,5 @@
 <template>
-  <Header>
+  <Div>
     <div class="p-8 bg-purple-400">
       <Head title="Poster un article"/>
       <div class=" wrap flex justify-between items-start py-8 box-contente">
@@ -72,7 +72,7 @@
       </div>
 
     </div>
-  </Header>
+  </Div>
 </template>
 <style>
 .truncate {
@@ -93,7 +93,7 @@ import {Head} from '@inertiajs/inertia-vue3'
 import TextInput from '@/Shared/TextInput'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
-import Header from '@/Shared/Header'
+import Div from '@/Shared/Corp.vue'
 import FileInput from "@/Shared/FileInput.vue";
 import CardPricipale from "@/Pages/Blog/CardPricipale.vue";
 import CkeditorInput from "@/Shared/CkeditorInput.vue";
@@ -111,7 +111,7 @@ export default {
     SelectInput,
     TextInput,
   },
-  layout: Header,
+  layout: Div,
   remember: 'form',
   data() {
     return {

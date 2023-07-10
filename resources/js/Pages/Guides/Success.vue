@@ -23,7 +23,7 @@
 
 <script>
 // import { Head } from '@inertiajs/inertia-vue3'
-import Header from '@/Shared/Header'
+import Header from '@/Shared/Corp.vue'
 import List from "@/Pages/Blog/List.vue";
 
 export default {

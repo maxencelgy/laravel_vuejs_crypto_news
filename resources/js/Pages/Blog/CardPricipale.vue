@@ -20,7 +20,7 @@
     </div>
     <div class="pt-2 pb-5 pl-5 pr-5">
       <a :href="link">
-        <h5 class="mb-2 text-4xl font-bold tracking-tight text-white">{{ title }}</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">{{ title }}</h5>
       </a>
       <p class="mb-3 font-normal text-gray-400 no-truncate"> {{ tronquerTexte(description, 300  ) }}</p>
       <a :href="link"
@@ -129,7 +129,7 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 350px;
+  height: 280px;
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
   margin-bottom: 1rem;

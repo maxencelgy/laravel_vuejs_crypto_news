@@ -167,7 +167,7 @@ class UsersController extends Controller
     public function profile()
     {
         return Inertia::render('Users/Profile', [
-            'articles' => Guide::getArticlesLiked(),
+            'articles' => Guide::getArticlesLiked() ? Guide::getArticlesLiked() : null,
             'categories' => Category::all(),
             'likes' => Like::all(),
             'users' => User::all(),

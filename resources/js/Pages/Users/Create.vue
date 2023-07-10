@@ -17,7 +17,7 @@
             <text-input v-model="form.password" :error="form.errors.password" class="pb-8 pr-6 w-full"
                         type="password" autocomplete="new-password" label="Mot de passe * "/>
 
-            <label class="text-base text-gray-200 form-label mb-2"> Choisissez un rôle. Cette option est disponible que pour l'administrateur. </label>
+            <label v-if="admin == 'admin'" class="text-base text-gray-200 form-label mb-2"> Choisissez un rôle. Cette option est disponible que pour l'administrateur. </label>
             <select-input class=" text-white mb-4" v-if="admin == 'admin'" v-model="form.admin" :error="form.errors.password" >
               <option selected value=""> Choisissez un role</option>
               <option value="1">Utilisateur</option>
@@ -48,7 +48,7 @@ import {Head, Link} from '@inertiajs/inertia-vue3'
 import FileInput from '@/Shared/FileInput'
 import TextInput from '@/Shared/TextInput'
 import LoadingButton from '@/Shared/LoadingButton'
-import Header from '@/Shared/Header'
+import Header from '@/Shared/Corp.vue'
 import SelectInput from '@/Shared/SelectInput'
 
 export default {

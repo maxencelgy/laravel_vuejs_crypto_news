@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <div class="home not-hidden" :class="{ '!block' : showMobileMenu }" @click="desactiverShow" style="position: absolute; top: 0; height: 200000px; width: 100%; background-color: rgba(0,0,0,0.23); z-index: 888"></div>
     <div class="menu-burger not-hidden " style="transition: .8s" :class="{ '!block' : showMobileMenu }">
 
@@ -10,7 +10,7 @@
         <div>
           <div class="gap-4">
             <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl "
-                  :href="`#selection`">
+                  :href="`/#selection`">
               Sélection de la semaine
             </Link>
             <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl "
@@ -48,7 +48,7 @@
               </template>
               <template #dropdown>
                 <div class=" mt-2 py-2 !text-white  bg-purple-600 rounded shadow-xl">
-                  <Link @click="desactiverShow" v-if="auth.user.role == 3"
+                  <a @click="desactiverShow" v-if="auth.user.role == 3"
                         class="text-center flex items-center justify-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                         :href="`/admin`">
                     <p class="mr-1">Admin</p>
@@ -89,7 +89,7 @@
                       <path fill="#FFF59D"
                             d="M31.59 71.62C19.97 66.35 16.55 52.6 14.73 46.63c-.24-.79-.12-1.54.67-1.78s1.26.27 1.51 1.06c1.32 4.33 6.45 18.79 17.04 22.9c.77.3 1.97 1.03 1.32 2.28c-.43.81-1.81 1.38-3.68.53zM12.68 24.63c-.56-1.16-.79-2.26-3.84-3.53c-.77-.32-1.28-1.03-1.07-1.83s1.01-1.4 2.17-1.2c3.77.65 4.59 4.48 4.75 5.81c.15 1.28-1.44 1.91-2.01.75zm84.19 46.99c11.62-5.27 15.04-19.02 16.86-24.99c.24-.79.12-1.54-.67-1.78s-1.26.27-1.51 1.06c-1.32 4.33-6.45 18.79-17.04 22.9c-.77.3-1.97 1.03-1.32 2.28c.43.81 1.81 1.38 3.68.53zm18.91-46.99c.56-1.16.79-2.26 3.84-3.53c.77-.32 1.28-1.03 1.07-1.83s-1.01-1.4-2.17-1.2c-3.77.65-4.59 4.48-4.75 5.81c-.15 1.28 1.45 1.91 2.01.75zm-56.4 4.92c.61-1.25 1.68-2.96 5.17-3.68c1.34-.28 1.73-.86 1.61-1.74c-.24-1.83-2.52-1.7-3.75-1.41c-4.1.96-5.01 4.6-5.18 6.04c-.17 1.37 1.55 2.04 2.15.79z"/>
                     </svg>
-                  </Link>
+                  </a>
 
                   <Link @click="desactiverShow"
                         class="text-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
@@ -166,7 +166,7 @@
                 </template>
                 <template #dropdown>
                   <div class=" mt-2 py-2 text-sm bg-white rounded shadow-xl">
-                    <Link v-if="auth.user.role == 3"
+                    <a v-if="auth.user.role == 3"
                           class="text-center flex items-center justify-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                           :href="`/admin`">
                       <p class="mr-1">Admin</p>
@@ -207,7 +207,7 @@
                         <path fill="#FFF59D"
                               d="M31.59 71.62C19.97 66.35 16.55 52.6 14.73 46.63c-.24-.79-.12-1.54.67-1.78s1.26.27 1.51 1.06c1.32 4.33 6.45 18.79 17.04 22.9c.77.3 1.97 1.03 1.32 2.28c-.43.81-1.81 1.38-3.68.53zM12.68 24.63c-.56-1.16-.79-2.26-3.84-3.53c-.77-.32-1.28-1.03-1.07-1.83s1.01-1.4 2.17-1.2c3.77.65 4.59 4.48 4.75 5.81c.15 1.28-1.44 1.91-2.01.75zm84.19 46.99c11.62-5.27 15.04-19.02 16.86-24.99c.24-.79.12-1.54-.67-1.78s-1.26.27-1.51 1.06c-1.32 4.33-6.45 18.79-17.04 22.9c-.77.3-1.97 1.03-1.32 2.28c.43.81 1.81 1.38 3.68.53zm18.91-46.99c.56-1.16.79-2.26 3.84-3.53c.77-.32 1.28-1.03 1.07-1.83s-1.01-1.4-2.17-1.2c-3.77.65-4.59 4.48-4.75 5.81c-.15 1.28 1.45 1.91 2.01.75zm-56.4 4.92c.61-1.25 1.68-2.96 5.17-3.68c1.34-.28 1.73-.86 1.61-1.74c-.24-1.83-2.52-1.7-3.75-1.41c-4.1.96-5.01 4.6-5.18 6.04c-.17 1.37 1.55 2.04 2.15.79z"/>
                       </svg>
-                    </Link>
+                    </a>
                     <Link class="text-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
                           :href="`/profil`">Mon
                       profil
@@ -230,7 +230,7 @@
 
           <!-- Contenu à afficher si l'utilisateur n'est pas connecté -->
           <Link style="z-index: 99999" v-else
-                class="not-hidden not-hidden-desktop  focus:outline-none transition-all  text-black uppercase bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-lg px-5 py-2.5 mb-2"
+                class="not-hidden not-hidden-desktop  focus:outline-none transition-all  text-black uppercase bg-yellowFirst-600 hover:bg-yellowFirst-700 hover:text-white focus:ring-4 focus:ring-purple-300 font-semibold rounded-lg text-base px-5 py-2.5 mb-2"
                 :href="`/login`">
             S'inscrire / Se connecter
           </Link>
@@ -253,10 +253,10 @@
       </nav>
     </div>
 
-    <main>
-      <slot></slot> <!-- Emplacement pour le contenu de la page -->
+    <main class="min-h-[70vh] bg-purple-600">
+      <slot class=""></slot> <!-- Emplacement pour le contenu de la page -->
     </main>
-  </div>
+
   <footer class="bg-purple-400 py-16">
     <div class="wrap flex items-start justify-between">
       <div class="text-left">

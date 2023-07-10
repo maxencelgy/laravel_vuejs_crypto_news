@@ -1,5 +1,5 @@
 <template>
-  <Header>
+  <Corp>
     <div class="bg-purple-600">
       <div class="wrap flex justify-center pb-16">
         <div class="w-full pb-16">
@@ -15,13 +15,13 @@
 
       </div>
     </div>
-  </Header>
+  </Corp>
 </template>
 
 
 <script>
 // import { Head } from '@inertiajs/inertia-vue3'
-import Header from '@/Shared/Header'
+import Header from '@/Shared/Corp.vue'
 export default {
   components: {},
   layout: Header,
@@ -60,6 +60,12 @@ ol {
 ol li {
   margin-bottom: 0.5rem;
   list-style: decimal!important;
+}
+
+@media (max-width: 500px) {
+  .text-5xl {
+    font-size: 2rem;
+  }
 }
 
 </style>

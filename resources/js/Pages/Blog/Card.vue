@@ -9,7 +9,7 @@
 <!--      <img class="rounded-2xl mb-4 h-72 w-full" :src="'/img/' + imageSrc" :alt="imageAlt">-->
       <div class="img" :style="{ backgroundImage:'url(/img/'+ imageSrc +')' }"></div>
 
-      <h2 class="text-3xl mb-2 font-bold tracking-tight text-white">{{ title }} </h2>
+      <h2 class="text-xl mb-2 font-bold tracking-tight text-white">{{ title }} </h2>
       <span
         class="mt-2 text-base font-medium mr-2 px-2.5 py-0.5 rounded-full bg-purple-500 text-white">{{
           category}}</span>
@@ -132,8 +132,8 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 280px!important;
+  height: 200px!important;
   border-radius: .8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
 }
 </style>
