@@ -119,7 +119,7 @@
             propose une gamme variée de produits, soigneusement sélectionnés, pour que vous puissiez afficher votre
             amour pour les cryptomonnaies et exprimer votre passion avec style</p>
           <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
-            <a target="_blank" href="#"
+            <a target="_blank" href="https://shop.dailycrypto.fr"
                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-purple-500">
               Découvrir la boutique
               <svg aria-hidden="true" class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -137,7 +137,7 @@
             <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
             <div class="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
             <div class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white bg-gray-800">
-              <img src="/images/mockup-2-dark%20(1).png"
+              <img src="/images/ecran.png"
                    class=" w-[272px] h-[572px]" alt="">
             </div>
 
@@ -184,10 +184,7 @@ export default {
   methods: {
     async fetchCurrencies() {
       const response = await fetch('https://api.coinstats.app/public/v1/coins?skip=0&limit=5&currency=EUR');
-
       //Prendre les 5 premières crypto-monnaies de la liste
-
-
       response.json().then(data =>
         this.currencies = data.coins,
       );
@@ -199,8 +196,7 @@ export default {
     //   return Array.prototype.slice.call(my_object, 4);
     // },
   },
-  onMounted() {
-    console.log(this.currencies)
+  onMounted() {window.location.reload();
   },
   components: {Banner, Link, List},
   props: {

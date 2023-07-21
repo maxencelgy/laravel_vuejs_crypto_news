@@ -1,7 +1,7 @@
 <template>
   <div class="bg-purple-600">
     <div class="wrap">
-      <div class=" search flex items-center  bg-purple-600 md:py-8 " style=" overflow: auto">
+      <div class=" search flex items-center pb-24  bg-purple-600 md:py-8 " style=" overflow: auto">
         <!-- Boutons de filtrage -->
 
         <!-- Barre de recherche -->
@@ -9,21 +9,21 @@
           type="text"
           v-model="searchQuery"
           @input="searchByQuery"
-          placeholder="Search..."
-          class="border border-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
+          placeholder="Rechercher..."
+          class="border border-gray-900 text-white placeholder-white focus:ring-4 focus:outline-none focus:ring-gray-300  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 text-white focus:ring-gray-800"
         />
         <button
           type="button"
-          style="min-inline-size: 200px;" class="inline focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
+          style="min-inline-size: 250px;" class="inline focus:ring-4 focus:outline-none  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
           @click="filterByCategory(null)"
         >
           Toutes les catégories
         </button>
         <button
           type="button"
-          style="min-inline-size: 200px;"
+          style="min-inline-size: 280px;"
           v-for="categorie in categories"
-          :key="categorie.id" class="inline focus:ring-4 focus:outline-none rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
+          :key="categorie.id" class="inline focus:ring-4 focus:outline-none  text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 bg-purple-500 hover:bg-yellowFirst-700 text-white"
           @click="filterByCategory(categorie.id)"
         >
           {{ categorie.title }}
@@ -34,7 +34,7 @@
     <br>
     <br>
     <!-- Contenu de la liste -->
-    <div class="wrap flex pb-4 flex-wrap justify-between" style="min-height: 500px">
+    <div class="wrap flex gap-y-8 flex-wrap  justify-between" style="min-height: 400px">
       <Card v-if="user"
         v-for="article in filteredArticles"
         :key="article.id"
@@ -67,6 +67,8 @@
             buttonText="Lire la suite"
       />
     </div>
+    <br>
+
   </div>
 </template>
 

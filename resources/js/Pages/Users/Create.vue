@@ -18,7 +18,7 @@
                         type="password" autocomplete="new-password" label="Mot de passe * "/>
 
             <label v-if="admin == 'admin'" class="text-base text-gray-200 form-label mb-2"> Choisissez un rôle. Cette option est disponible que pour l'administrateur. </label>
-            <select-input class=" text-white mb-4" v-if="admin == 'admin'" v-model="form.admin" :error="form.errors.password" >
+            <select-input name="role" class=" text-white mb-4" v-if="admin == 'admin'" v-model="form.admin" :error="form.errors.password" >
               <option selected value=""> Choisissez un role</option>
               <option value="1">Utilisateur</option>
               <option value="2">Modérateur</option>

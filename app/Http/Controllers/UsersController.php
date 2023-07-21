@@ -8,6 +8,7 @@ use App\Models\Like;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
@@ -84,7 +85,7 @@ class UsersController extends Controller
             'first_name' => ['required', 'max:50'],
             'last_name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email', Rule::unique('users')],
-            'password' => ['nullable'],
+            'password' => ['required', 'max:50', 'confirmed'],
             'photo' => ['nullable', 'image'],
         ]);
 
@@ -93,7 +94,8 @@ class UsersController extends Controller
             'first_name' => Request::get('first_name'),
             'last_name' => Request::get('last_name'),
             'email' => Request::get('email'),
-            'password' => Request::get('password'),
+            'password' => Hash::make(Request::get('password')),
+            'role' => Request::get('admin') ?? 1,
             'owner' => 0,
             'photo_path' => Request::file('photo') ? Request::file('photo')->store('users') : null,
         ]);

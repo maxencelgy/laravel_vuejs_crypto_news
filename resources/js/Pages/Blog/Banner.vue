@@ -16,7 +16,7 @@
     />
     <div class="flex flex-col  items-left justify-between gap-4 box-right" style="width: 59%">
       <Link v-for="article in filteredItems" :href="`/guides/${article.id}`"
-            class="flex flex-col  rounded-lg shadow  md:flex-row  border-gray-700 bg-purple-600 hover:bg-purple-300">
+            class="flex flex-col  rounded-lg shadow w-full  md:flex-row  border-gray-700 bg-purple-600 hover:bg-purple-300">
         <img class="object-cover w-full rounded-t-lg  md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
              :src="`/img/${article.image}`" alt="">
         <div class="flex flex-col justify-between py-2">

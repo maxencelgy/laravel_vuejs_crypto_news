@@ -16,7 +16,7 @@ class GuidesAdminController extends Controller
     {
         return Inertia::render('Guides/admin/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'guides' => Auth::user()->guides()
+            'guides' => Guide::orderBy('online', 'asc')
                 ->orderBy('title')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
@@ -94,7 +94,7 @@ class GuidesAdminController extends Controller
     {
         $organization->delete();
 
-        return Redirect::back()->with('success', 'Guide deleted.');
+        return Redirect::route('guides')->with('success', 'Guide deleted.');
     }
 
     public function restore(Guide $organization)

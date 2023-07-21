@@ -13,7 +13,7 @@
       </search-filter>
       <Link class="btn-indigo" href="/admin/categories/create">
         <span>Create</span>
-        <span class="hidden md:inline">&nbsp;Guides</span>
+        <span class="hidden md:inline">&nbsp;Categorie </span>
       </Link>
     </div>
     <div class="bg-white rounded-md shadow overflow-x-auto">

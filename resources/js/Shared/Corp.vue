@@ -1,12 +1,12 @@
 <template>
 
-    <div class="home not-hidden" :class="{ '!block' : showMobileMenu }" @click="desactiverShow" style="position: absolute; top: 0; height: 200000px; width: 100%; background-color: rgba(0,0,0,0.23); z-index: 888"></div>
-    <div class="menu-burger not-hidden " style="transition: .8s" :class="{ '!block' : showMobileMenu }">
+    <div class="home cote"  :class="{ '!left-0' : showMobileMenu }" @click="desactiverShow" style="position: absolute; top: 0; height: 200000px; width: 100%; background-color: rgba(0,0,0,0.23); z-index: 888"></div>
+    <div class="menu-burger cote " style="transition: .8s" :class="{ '!left-0' : showMobileMenu }">
 
       <div class="corp">
-        <Link @click="desactiverShow" :href="`/`" class="flex items-center mb-44">
+        <a @click="desactiverShow" href="/" class="flex items-center mb-44">
           <logo class="block mx-auto w-full fill-white" height="100"/>
-        </Link>
+        </a>
         <div>
           <div class="gap-4">
             <Link @click="desactiverShow" class="mt-6 text-white hover:text-purple-500 font-semibold text-xl "
@@ -96,11 +96,11 @@
                         :href="`/profil`">Mon
                     profil
                   </Link>
-                  <Link @click="desactiverShow" v-if="auth.user.role == 3 || auth.user.role == 2"
+                  <a @click="desactiverShow" v-if="auth.user.role == 3 || auth.user.role == 2"
                         class="text-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
-                        :href="`/guides/create`">
+                        href="/guides/create">
                     Poster un article
-                  </Link>
+                  </a>
                   <Link @click="desactiverShow"
                         class="text-center text-lg block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500"
                         href="/logout"
@@ -212,11 +212,11 @@
                           :href="`/profil`">Mon
                       profil
                     </Link>
-                    <Link v-if="auth.user.role == 3 || auth.user.role == 2"
+                    <a v-if="auth.user.role == 3 || auth.user.role == 2"
                           class="text-center text-lg block px-6 py-2 hover:text-white hover:bg-indigo-500 "
-                          :href="`/guides/create`">
+                          href="/guides/create">
                       Poster un article
-                    </Link>
+                    </a>
                     <Link
                       class="text-center text-lg block px-6 py-2 w-full text-left hover:text-white hover:bg-indigo-500"
                       href="/logout"
@@ -274,13 +274,13 @@
           suivre
         </Link>
         <Link :href="`/guides`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Guides</Link>
-        <Link :href="`/#boutique`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">La boutique
-        </Link>
+        <a href="https://shop.dailycrypto.fr" target="_blank" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">La boutique
+        </a>
       </div>
       <div>
         <h3 class="text-2xl mb-4 font-semibold text-white">Mentions légales</h3>
         <Link :href="`/mentions-legales`" class="text-gray-400 mb-8 text-lg hover:text-purple-500 cursor-pointer">
-          Mention legales
+          Mentions legales
         </Link>
         <br>
         <Link :href="`/politique`" class="text-gray-400 mb-2 text-lg hover:text-purple-500 cursor-pointer">Politique de
@@ -370,6 +370,10 @@ export default {
 </script>
 
 <style>
+.cote {
+  left: -100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -437,7 +441,7 @@ html {
 
 @media (max-width: 740px) {
   .menu-burger {
-    width: 250px;
+    width: 290px;
   }
 
   .nav {

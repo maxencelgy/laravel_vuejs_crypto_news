@@ -120,6 +120,7 @@ export default {
         user_id: this.user.id,
         content: '',
         image: null,
+        role: '',
         categoryId: '',
         online: 0,
       }),
@@ -164,7 +165,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .img {
   background-position: center center;
   background-repeat: no-repeat;

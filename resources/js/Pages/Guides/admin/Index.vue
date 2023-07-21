@@ -44,8 +44,8 @@
 
           </td>
           <td class="border-t">
-            <Link style=" display: inline-block;width: 50ex;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;vertical-align: middle;" class="flex items-center px-6 py-4 focus:text-indigo-500" :href="`/admin/guides/${guide.id}/edit`">
-              {{ guide.content }}
+            <Link style=" display: inline-block;width: 50ex;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;vertical-align: middle;" class="flex items-center px-6 py-4 focus:text-indigo-500"  :href="`/admin/guides/${guide.id}/edit`">
+              <p v-html="guide.content"></p>
               <icon v-if="guide.deleted_at" name="trash" class="flex-shrink-0 ml-2 w-3 h-3 fill-gray-400" />
             </Link>
           </td>

@@ -22,7 +22,7 @@
           <div>
             <text-input class="hidden" v-model="form.content" :model-value="form.content"></text-input>
             <text-input class="hidden" v-model="form.user_id" :model-value="form.user_id"></text-input>
-            <div class="flex flex-col lg:w-1/2">
+            <div class="flex flex-col ">
               <img :src="`/img/${form.image}`" class="text-center rounded-xl " style="width: 500px">
               <br>
               <file-input v-model="form.image" @change="handleFileChange" :error="form.errors.image"
@@ -30,11 +30,11 @@
                           accept="image/*" label="Photo"/>
             </div>
 
-            <select-input v-model="form.categoryId" :error="form.errors.category"
-                          class="pb-8 !text-gray-400 pr-6 lg:w-1/2"
+            <select-input style="color: black!important;" v-model="form.categoryId" :error="form.errors.category"
+                          class="pb-8 !text-gray-400 pr-6"
                           label="Catégorie">
-              <option value=""> Sélectionnez une catégorie</option>
-              <option :value="`${item.id}`" v-for="item in categories" :key="item.id">{{ item.title }}</option>
+              <option value="" style="color: black!important;"> Sélectionnez une catégorie</option>
+              <option style="color: black!important;" :value="`${item.id}`" v-for="item in categories" :key="item.id">{{ item.title }}</option>
             </select-input>
             <label class="relative inline-flex items-center mb-5 cursor-pointer">
               <input name="online" :value="form.online" v-model="form.online" type="checkbox"
@@ -46,13 +46,14 @@
             <br>
             <br>
           </div>
-
+          <button v-if="!guide.deleted_at" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" tabindex="-1" type="button"
+                  @click="destroy">Delete Guide
+          </button>
+          <br>
 
         </div>
         <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
-          <button v-if="!guide.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button"
-                  @click="destroy">Delete Guide
-          </button>
+
           <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update Guide
           </loading-button>
         </div>
@@ -134,7 +135,7 @@ export default {
   }
 }
 </script>
-<style>
+<style >
 label {
   color: black !important;
 }
